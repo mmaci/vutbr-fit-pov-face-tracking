@@ -7,48 +7,37 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-#include <aboninterface.h>
-
-#include "WeakClassifier.h"
-
 class SimpleWaldboost
 {
 public:	
 	SimpleWaldboost() { };
-	SimpleWaldboost(WeakClassifier c) : _classifier(c) { };
+	SimpleWaldboost(Classifier* c) : _classifier(c) { };
 	~SimpleWaldboost();	
-
-	void setScale(float const& s) { _scale = s; }
-	float getScale() const { return _scale; }
-
-	void setLevels(int const& l) { _levels = l; }
-	int getLevels() const { return _levels; }	
 
 	void setImage(cv::Mat const& i);
 	cv::Mat getImage() const { return _image; }
 
-	void setPyramid(std::vector<cv::Mat> const& p){ _pyramid = p; }
-	std::vector<cv::Mat> getPyramid() const { return _pyramid; }
-
-	void setClassifier(WeakClassifier classifier) { _classifier = classifier; }
-	WeakClassifier getClassifier() const { return _classifier; }
-
-	std::vector<cv::Mat> createPyramid(cv::Size base, cv::Size min, int octaves, int levelsPerOctave);
+	void setClassifier(Classifier* classifier) { _classifier = classifier; }
+	Classifier* getClassifier() const { return _classifier; }
 
 	cv::Mat resizeImage(int width, int height);
 	cv::Mat resizeImage(cv::Size size) { return resizeImage(size.width, size.height); };
 	
 	void init() { };
+	void createPyramids(cv::Size base, cv::Size min, int octaves, int levelsPerOctave);
 	
-	unsigned int detect(std::vector<abonDetection>* results, unsigned int size, float scale);
+	unsigned int detect(std::vector<Detection>* results);
+
+	bool eval(cv::Mat* image, unsigned int x, unsigned int y, float* response);
+	void sumRegions(cv::Mat* image, unsigned int baseX, unsigned baseY, unsigned int width, unsigned int height, std::vector<unsigned int>& result);
+	float evalLBP(cv::Mat* image, unsigned x, unsigned y, Stage s);
 	
 
 private:
-	WeakClassifier _classifier;
-	float _scale;
-	int _levels;
+	Classifier* _classifier;
+
 	cv::Mat _image;
-	std::vector<cv::Mat> _pyramid;
+	PyramidContainer _pyramids;
 };
 
 #endif

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SimpleWaldboost.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\detector.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\header.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SimpleWaldboost.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="headers">
+      <UniqueIdentifier>{04d3012e-e27c-406a-aa03-2416142ee44f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{788a49fe-572e-410f-be15-f9decfbdb1d2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
