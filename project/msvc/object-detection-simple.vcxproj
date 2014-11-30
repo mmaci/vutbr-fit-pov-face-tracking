@@ -11,18 +11,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\detector.h" />
-    <ClInclude Include="..\src\header.h" />
-    <ClInclude Include="..\src\SimpleWaldboost.h" />
+    <ClCompile Include="..\src\simple\main.cpp" />
+    <ClCompile Include="..\src\simple\SimpleWaldboost.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\SimpleWaldboost.cpp" />
+    <ClInclude Include="..\src\simple\detector.h" />
+    <ClInclude Include="..\src\simple\header.h" />
+    <ClInclude Include="..\src\simple\SimpleWaldboost.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{47E3EB13-CE65-4C34-921A-9AB6355DE732}</ProjectGuid>
     <RootNamespace>DU1</RootNamespace>
-    <ProjectName>object-detection</ProjectName>
+    <ProjectName>object-detection-simple</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -39,8 +39,7 @@
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -49,12 +48,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>../bin/</OutDir>
+    <OutDir>$(SolutionDir)..\bin\simple\$(Configuration)\</OutDir>
     <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)..\bin\simple\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>../bin/</OutDir>
+    <OutDir>$(SolutionDir)..\bin\simple\$(Configuration)\</OutDir>
     <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)..\bin\simple\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -85,6 +86,5 @@
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>
