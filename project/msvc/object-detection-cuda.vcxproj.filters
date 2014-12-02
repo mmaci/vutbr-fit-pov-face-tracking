@@ -20,5 +20,8 @@
     <ClInclude Include="..\src\cuda\header.h">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\cuda\detector.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
