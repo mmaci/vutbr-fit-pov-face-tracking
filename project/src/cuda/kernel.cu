@@ -12,76 +12,98 @@
 
 #include "header.h"
 #include "detector.h"
+#include "alphas.h"
 
 /// wrapper to call kernels
-cudaError_t runKernelWrapper(uint8* /* device image */, Detection* /* device detection buffer */, uint32* /* device detection count */, cudaTextureObject_t* /* ptr to txt memory with alphas*/);
+cudaError_t runKernelWrapper(uint8* /* device image */, Detection* /* device detection buffer */, uint32* /* device detection count */, Bounds*);
 
 /// runs object detectin on gpu itself
-__device__ void detect(uint8* /* device image */, Detection* /* detections */, uint32* /* detection count */, cudaTextureObject_t* /* alphas */);
+__device__ void detect(uint8* /* device image */, Detection* /* detections */, uint32* /* detection count */, uint16 /* starting stage */, uint16 /* ending stage */, Bounds*);
 /// gpu bilinear interpolation
 __device__ void bilinearInterpolation(uint8* /* input image */, uint8* /* output image */, const float /* scale */);
 /// builds a pyramid image with parameters set in header.h
-__device__ void buildPyramid(uint8* /* device image */);
+__device__ void buildPyramid(uint8* /* device image */, Bounds*);
 
 /// detector stages
 __constant__ Stage stages[STAGE_COUNT];
 /// detector parameters
 __constant__ DetectorInfo detectorInfo[1];
 
-__global__ void runKernel(uint8* imageData, Detection* detections, uint32* detectionCount, cudaTextureObject_t* alphas)
-{
-	buildPyramid(imageData);
+/// pyramid kernel
 
-	__syncthreads();
-	
-	detect(imageData, detections, detectionCount, alphas);
+texture<uint8> textureOriginalImage;
+texture<float> textureAlphas;
+
+__global__ void pyramidImageKernel(uint8* imageData, Bounds* bounds) {
+	buildPyramid(imageData, bounds);	
 }
 
-__device__ void buildPyramid(uint8* imageData)
+__device__ void buildPyramid(uint8* imageData, Bounds* bounds)
 {	
 	float scale = 1.0f;
 	uint32 image_width = detectorInfo[0].imageWidth;
 	uint32 image_height = detectorInfo[0].imageHeight;
 
 	const int x = blockIdx.x*blockDim.x + threadIdx.x;
-	const int y = blockIdx.y*blockDim.y + threadIdx.y;
+	const int y = blockIdx.y*blockDim.y + threadIdx.y;	
 
 	if (x < (image_width-1) && y < (image_height-1))
-	{		
-		int offset = (detectorInfo[0].imageWidth * detectorInfo[0].imageHeight);
+	{				
+		uint32 offset = (detectorInfo[0].imageWidth * detectorInfo[0].imageHeight);
+		uint32 h_offset = image_height;
 		for (int level = 0; level < PYRAMID_IMAGE_COUNT; ++level)
 		{
-			scale *= SCALE_FACTOR;
+			scale /= SCALE_FACTOR;
 			image_width /= SCALE_FACTOR;
 			image_height /= SCALE_FACTOR;
 
 			bilinearInterpolation(imageData, imageData + offset, scale);
 
+			bounds[level].start = offset;
+			bounds[level].heightOffset = h_offset;
+			bounds[level].end = offset + (detectorInfo[0].pyramidImageWidth * image_height);
+			bounds[level].scale = scale;			
+
+			h_offset += image_height;			
 			offset += image_height * detectorInfo[0].imageWidth;
 		}
 	}	
 }
+
+/// detection kernels
+
+__global__ void detectionKernel1(uint8* imageData, Detection* detections, uint32* detectionCount, Bounds* bounds)
+{
+	detect(imageData, detections, detectionCount, 0, 2048, bounds);
+}
+/*
+__global__ void detectionKernel2(uint8* imageData, Detection* detections, uint32* detectionCount)
+{
+	detect(imageData, detections, detectionCount, 512, 1024);
+}
+
+
+__global__ void detectionKernel3(uint8* imageData, Detection* detections, uint32* detectionCount)
+{
+	detect(imageData, detections, detectionCount, 1024, 1536);
+}
+
+
+__global__ void detectionKernel4(uint8* imageData, Detection* detections, uint32* detectionCount)
+{
+	detect(imageData, detections, detectionCount, 1536, 2048);
+}*/
+
 
 __device__ void bilinearInterpolation(uint8* inImage, uint8* outImage, const float scale)
 {	
 	const int origX = blockIdx.x*blockDim.x + threadIdx.x;
 	const int origY = blockIdx.y*blockDim.y + threadIdx.y;
 
-	const int x = origX / scale;
-	const int y = origY / scale;
+	const int x = origX * scale;
+	const int y = origY * scale;	
 
-	float dx = origX / scale - x;
-	float dy = origY / scale - y;
-
-	uint8 a = inImage[origY * detectorInfo[0].imageWidth + origX];
-	uint8 b = inImage[origY * detectorInfo[0].imageWidth + origX + 1];
-	uint8 c = inImage[(origY + 1) * detectorInfo[0].imageWidth + origX];
-	uint8 d = inImage[(origY + 1) * detectorInfo[0].imageWidth + origX + 1];
-
-	uint8 res = (a * (1.0f - dx) * (1.0f - dy))
-		+ (b * dx * (1.0f - dy))
-		+ (c * (1.0f - dx) * dy)
-		+ (d * dx * dy);
+	uint8 res = tex1Dfetch(textureOriginalImage, origY * detectorInfo[0].imageWidth + origX);
 
 	outImage[y * detectorInfo[0].pyramidImageWidth + x] = res;
 }
@@ -98,75 +120,90 @@ __device__ void sumRegions(uint8* imageData, Stage* stage, uint32* values)
 		uint32 acc = 0;
 		for (uint32 x = startX; x < startX + stage->width; ++x) {
 			for (uint32 y = startY; y < startY + stage->height; ++y) {
-				acc += imageData[y * detectorInfo[0].pyramidImageWidth + x];
+				acc += imageData[y * detectorInfo[0].imageWidth + x];
 			}
 		}
 
-		values[i] = acc;
+		values[i] = acc;		
 	}
 }
 
-__device__ float evalLBP(uint8* data, Stage* stage, cudaTextureObject_t* alphas)
+__device__ float evalLBP(uint8* data, Stage* stage)
 {
-	const int LBPOrder[8] = { 0, 1, 2, 5, 8, 7, 6, 3 };
+	const uint8 LBPOrder[8] = { 0, 1, 2, 5, 8, 7, 6, 3 };
 
 	uint32 values[9];
 
 	sumRegions(data, stage, values);
 
-	int code = 0;
-	for (int i = 0; i < 8; ++i)
+	uint8 code = 0;
+	for (uint8 i = 0; i < 8; ++i)
 		code |= (values[LBPOrder[i]] > values[4]) << i;
 
-	return tex1Dfetch<float>(*alphas, stage->alphaOffset + code);
+	return tex1Dfetch(textureAlphas, stage->alphaOffset + code);
 }
 
-__device__ bool eval(uint8* imageData, float* response, cudaTextureObject_t* alphas)
+__device__ bool eval(uint8* imageData, float* response, uint16 startStage, uint16 endStage)
 {	
-	for (int i = 0; i < detectorInfo[0].stageCount; ++i) {		
-		Stage* stage = &stages[i];
-		*response += evalLBP(imageData, stage, alphas);
-		if (*response < stage->thetaB) {
+	for (uint16 i = startStage; i < endStage; ++i) {		
+		Stage stage = stages[i];
+		*response += evalLBP(imageData, &stage);
+		if (*response < stage.thetaB) {
 			return false;
 		}
 	}	
 	return true;
 }
 
-__device__ void detect(uint8* data, Detection* detections, uint32* detectionCount, cudaTextureObject_t* alphas)
+__device__ void detect(uint8* imageData, Detection* detections, uint32* detectionCount, uint16 startStage, uint16 endStage, Bounds* bounds)
 {
 	const int x = blockIdx.x*blockDim.x + threadIdx.x;
 	const int y = blockIdx.y*blockDim.y + threadIdx.y;
 
-	if (x < detectorInfo[0].pyramidImageWidth - CLASSIFIER_WIDTH && y < detectorInfo[0].pyramidImageHeight - CLASSIFIER_HEIGHT) {
-		for (int i = 0; i < detectorInfo[0].stageCount; ++i) {
-			float response = 0.0f;
-			if (eval(data, &response, alphas)) {
-				uint32 id = atomicInc(detectionCount, 1);
+	if (x < (detectorInfo[0].pyramidImageWidth - detectorInfo[0].classifierWidth) && y < (detectorInfo[0].pyramidImageHeight - detectorInfo[0].classifierHeight)) {
+		
+		float response = 0.0f;
+		if (eval(imageData, &response, startStage, endStage)) {
 
-				if (id > MAX_DETECTIONS)
-					return;
-
-				Detection d;
-				d.x = x;
-				d.y = y;
-				d.width = CLASSIFIER_WIDTH;
-				d.height = CLASSIFIER_HEIGHT;
-				d.response = response;
-				detections[id] = d;
+			Bounds b;
+			uint32 ptr = y * detectorInfo[0].pyramidImageWidth + x;
+			for (uint8 i = 0; i < PYRAMID_IMAGE_COUNT; ++i) {
+				if (ptr >= bounds[i].start && ptr < bounds[i].end) {
+					b = bounds[i];
+					break;
+				}
 			}
+
+			uint32 pos = atomicInc(detectionCount, 2048);
+			detections[pos].x = x / b.scale;
+			detections[pos].y = (y - b.heightOffset) / b.scale;
+			detections[pos].width = detectorInfo[0].classifierWidth / b.scale;
+			detections[pos].height = detectorInfo[0].classifierHeight / b.scale;
+			detections[pos].response = response;
 		}
+		
 	}
 }
 
-cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* detectionCount, cudaTextureObject_t* alphas)
+cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* detectionCount, Bounds* bounds)
 {
 	cudaError_t cudaStatus;
 	cudaStatus = cudaSetDevice(0);
 
-	dim3 grid(16, 16);
+	dim3 grid(16, 64);
 	dim3 block(32, 32);
-	runKernel <<<grid, block>>>(imageData, detections, detectionCount, alphas);
+
+	pyramidImageKernel <<<grid, block>>> (imageData, bounds);	
+
+	cudaThreadSynchronize();
+
+	detectionKernel1 <<<grid, block>>>(imageData, detections, detectionCount, bounds);
+
+	//detectionKernel2 <<<grid, block>>>(imageData, detections, detectionCount, alphas);
+
+	//detectionKernel3 <<<grid, block>>>(imageData, detections, detectionCount, alphas);
+
+	//detectionKernel4 <<<grid, block>>>(imageData, detections, detectionCount, alphas);
 
 	cudaStatus = cudaGetLastError();
 	if (cudaStatus != cudaSuccess) {
@@ -242,15 +279,16 @@ int main(int argc, char** argv)
 
 		// ********* DEVICE VARIABLES **********
 		float* devAlphaBuffer;
-		uint8* devImageData;
+		uint8* devImageData, *devOriginalImage;
 		uint32* devDetectionCount;
 		Detection* devDetections;
+		Bounds* devBounds;
 
 		// ********* HOST VARIABLES *********
 		uint8* hostImageData;
 		hostImageData = (uint8*)malloc(sizeof(uint8) * PYRAMID_IMAGE_SIZE);
 		uint32 hostDetectionCount = 0;
-		Detection hostDetections[MAX_DETECTIONS];
+		Detection hostDetections[MAX_DETECTIONS];		
 
 		// ********* CONSTANTS **********
 		DetectorInfo hostDetectorInfo[1];
@@ -270,32 +308,29 @@ int main(int argc, char** argv)
 		
 		// texture memory		
 		cudaMalloc(&devAlphaBuffer, STAGE_COUNT * ALPHA_COUNT * sizeof(float));		
+		cudaMemcpy(devAlphaBuffer, alphas, STAGE_COUNT * ALPHA_COUNT * sizeof(float), cudaMemcpyHostToDevice);
+		
 
-		// create texture object
-		// resource params
-		cudaResourceDesc resDesc;
-		memset(&resDesc, 0, sizeof(resDesc));
-		resDesc.resType = cudaResourceTypeLinear;
-		resDesc.res.linear.devPtr = devAlphaBuffer;
-		resDesc.res.linear.desc.f = cudaChannelFormatKindFloat;
-		resDesc.res.linear.desc.x = sizeof(float) * 8; // in bits
-		resDesc.res.linear.sizeInBytes = STAGE_COUNT * ALPHA_COUNT * sizeof(float);
-
-		// texture params
-		cudaTextureDesc texDesc;
-		memset(&texDesc, 0, sizeof(texDesc));
-		texDesc.readMode = cudaReadModeElementType;
-
-		cudaTextureObject_t texAlphas;
-		cudaCreateTextureObject(&texAlphas, &resDesc, &texDesc, nullptr);
-
-		// global memory
-		cudaMalloc((void**)&devImageData, PYRAMID_IMAGE_SIZE * sizeof(uint8));
+		cudaMalloc(&devImageData, PYRAMID_IMAGE_SIZE * sizeof(uint8));
+		cudaMalloc(&devOriginalImage, ORIG_IMAGE_SIZE * sizeof(uint8));
 		cudaMalloc((void**)&devDetectionCount, sizeof(uint32));		
 		cudaMalloc((void**)&devDetections, MAX_DETECTIONS * sizeof(Detection));
+		cudaMalloc((void**)&devBounds, PYRAMID_IMAGE_COUNT * sizeof(Bounds));
+		
 
-		cudaMemcpy(devImageData, image_bw.data, ORIG_IMAGE_SIZE, cudaMemcpyHostToDevice);
-		cudaMemcpy(devDetectionCount, &hostDetectionCount, sizeof(uint32), cudaMemcpyHostToDevice);		
+		uint8* clean = (uint8*)malloc(PYRAMID_IMAGE_SIZE * sizeof(uint8));
+		memset(clean, 0, PYRAMID_IMAGE_SIZE * sizeof(uint8));
+
+		cudaMemcpy(devImageData, clean, PYRAMID_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
+		cudaMemcpy(devImageData, image_bw.data, ORIG_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
+		cudaMemcpy(devOriginalImage, image_bw.data, ORIG_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
+		cudaMemcpy(devDetectionCount, &hostDetectionCount, sizeof(uint32), cudaMemcpyHostToDevice);	
+		
+		cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc<uint8>();
+		cudaBindTexture(nullptr, &textureOriginalImage, devOriginalImage, &channelDesc, sizeof(uint8) * ORIG_IMAGE_SIZE);
+
+		cudaChannelFormatDesc alphaChannelDesc = cudaCreateChannelDesc<float>();
+		cudaBindTexture(nullptr, &textureAlphas, devAlphaBuffer, &alphaChannelDesc, STAGE_COUNT * ALPHA_COUNT * sizeof(float));
 
 		// ********* RUN ALL THEM KERNELS! **********		
 
@@ -303,21 +338,22 @@ int main(int argc, char** argv)
 			devImageData, 
 			devDetections, 
 			devDetectionCount,
-			&texAlphas
+			devBounds
 		);
 
 		// ********* COPY RESULTS FROM GPU *********
 		
 		cudaMemcpy(&hostDetectionCount, devDetectionCount, sizeof(uint32), cudaMemcpyDeviceToHost);
-		cudaMemcpy(hostDetections, devDetections, hostDetectionCount * MAX_DETECTIONS, cudaMemcpyDeviceToHost);
+		cudaMemcpy(hostDetections, devDetections, hostDetectionCount * sizeof(Detection), cudaMemcpyDeviceToHost);
 		cudaMemcpy(hostImageData, devImageData, sizeof(uint8) * PYRAMID_IMAGE_SIZE, cudaMemcpyDeviceToHost);
 
 		// ********* FREE CUDA MEMORY *********
 		cudaFree(devDetectionCount);
 		cudaFree(devImageData);
+		cudaFree(devOriginalImage);
+		cudaUnbindTexture(textureOriginalImage);
 		cudaFree(devDetections);
 		cudaFree(devAlphaBuffer);
-		cudaDestroyTextureObject(texAlphas);
 
 		// ********* SHOW RESULTS *********
 
@@ -332,6 +368,8 @@ int main(int argc, char** argv)
 		std::cout << "Detection count: " << hostDetectionCount << std::endl;
 
 		for (uint32 i = 0; i < hostDetectionCount; ++i) {
+			std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
+
 			cv::rectangle(pyramidImage, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(0, 0, 0), 3);
 			cv::rectangle(pyramidImage, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(255, 255, 255));
 		}

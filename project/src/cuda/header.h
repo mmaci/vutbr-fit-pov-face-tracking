@@ -34,13 +34,20 @@ struct DetectorInfo {
 	uint16 alphaCount, stageCount;
 };
 
+struct Bounds {
+	uint32 start;
+	uint32 end;
+	uint32 heightOffset;
+	float scale;
+};
+
 const uint32 MAX_DETECTIONS = 2048;
 const uint32 ALPHA_COUNT = 256;
 const uint32 STAGE_COUNT = 2048;
 const uint8 CLASSIFIER_WIDTH = 26;
 const uint8 CLASSIFIER_HEIGHT = 26;
 
-#define PYRAMID_IMAGE_COUNT 5
-#define SCALE_FACTOR 1.3f
+#define PYRAMID_IMAGE_COUNT 10
+#define SCALE_FACTOR 1.5f
 
 #endif
