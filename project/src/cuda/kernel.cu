@@ -22,7 +22,7 @@ __device__ void detect(uint8* /* device image */, Detection* /* detections */, u
 /// gpu bilinear interpolation
 __device__ void bilinearInterpolation(uint8* /* input image */, uint8* /* output image */, const float /* scale */);
 /// builds a pyramid image with parameters set in header.h
-__device__ void buildPyramid(uint8* /* device image */, Bounds*);
+__device__ void buildPyramid(uint8* /* device image */, uint32, uint32, uint32, uint32, Bounds*, uint32);
 
 /// detector stages
 __constant__ Stage stages[STAGE_COUNT];
@@ -35,40 +35,46 @@ texture<uint8> textureOriginalImage;
 texture<float> textureAlphas;
 
 __global__ void pyramidImageKernel(uint8* imageData, Bounds* bounds) {
-	buildPyramid(imageData, bounds);	
+	buildPyramid(imageData, 160, 120, 48.0f, 48.0f, bounds, 16);	
 }
 
-__device__ void buildPyramid(uint8* imageData, Bounds* bounds)
-{	
-	float scale = 1.0f;
-	uint32 image_width = detectorInfo[0].imageWidth;
-	uint32 image_height = detectorInfo[0].imageHeight;
-
+__device__ void buildPyramid(uint8* imageData, uint32 max_x, uint32 max_y, uint32 min_x, uint32 min_y, Bounds* bounds, uint32 octaves)
+{
 	const int x = blockIdx.x*blockDim.x + threadIdx.x;
-	const int y = blockIdx.y*blockDim.y + threadIdx.y;	
+	const int y = blockIdx.y*blockDim.y + threadIdx.y;
 
-	if (x < (image_width-1) && y < (image_height-1))
-	{				
-		uint32 offset = (detectorInfo[0].imageWidth * detectorInfo[0].imageHeight);
-		uint32 h_offset = image_height;
-		for (int level = 0; level < PYRAMID_IMAGE_COUNT; ++level)
+	float scaling_factor = pow(2.0f, 1.0f / 4.0f);
+	bool is_landscape = detectorInfo[0].imageWidth > detectorInfo[0].imageHeight;
+
+	float current_scale = is_landscape ? (float)detectorInfo[0].imageWidth / (float)max_x : (float)detectorInfo[0].imageHeight / (float)max_y;
+
+	uint32 offset = (detectorInfo[0].imageWidth * detectorInfo[0].imageHeight);
+	uint32 h_offset = detectorInfo[0].imageHeight;
+
+	uint32 image_width = detectorInfo[0].imageWidth / current_scale;
+	uint32 image_height = detectorInfo[0].imageHeight / current_scale;
+
+	if (x < (detectorInfo[0].imageWidth - 1) && y < (detectorInfo[0].imageHeight - 1))
+	{
+		for (int level = 0; level < octaves; ++level)
 		{
-			scale /= SCALE_FACTOR;
-			image_width /= SCALE_FACTOR;
-			image_height /= SCALE_FACTOR;
-
-			bilinearInterpolation(imageData, imageData + offset, scale);
+			bilinearInterpolation(imageData, imageData + offset, current_scale);
 
 			bounds[level].start = offset;
 			bounds[level].heightOffset = h_offset;
 			bounds[level].end = offset + (detectorInfo[0].pyramidImageWidth * image_height);
-			bounds[level].scale = scale;			
+			bounds[level].scale = current_scale;			
 
-			h_offset += image_height;			
+			h_offset += image_height;
 			offset += image_height * detectorInfo[0].imageWidth;
+
+			current_scale *= scaling_factor;
+			image_height *= scaling_factor;
 		}
-	}	
+	}
 }
+
+	
 
 /// detection kernels
 
@@ -100,8 +106,8 @@ __device__ void bilinearInterpolation(uint8* inImage, uint8* outImage, const flo
 	const int origX = blockIdx.x*blockDim.x + threadIdx.x;
 	const int origY = blockIdx.y*blockDim.y + threadIdx.y;
 
-	const int x = origX * scale;
-	const int y = origY * scale;	
+	const int x = origX / scale;
+	const int y = origY / scale;	
 
 	uint8 res = tex1Dfetch(textureOriginalImage, origY * detectorInfo[0].imageWidth + origX);
 
@@ -152,7 +158,9 @@ __device__ bool eval(uint8* imageData, float* response, uint16 startStage, uint1
 			return false;
 		}
 	}	
-	return true;
+
+	// final waldboost threshold
+	return *response > FINAL_THRESHOLD;
 }
 
 __device__ void detect(uint8* imageData, Detection* detections, uint32* detectionCount, uint16 startStage, uint16 endStage, Bounds* bounds)
@@ -175,10 +183,10 @@ __device__ void detect(uint8* imageData, Detection* detections, uint32* detectio
 			}
 
 			uint32 pos = atomicInc(detectionCount, 2048);
-			detections[pos].x = x / b.scale;
-			detections[pos].y = (y - b.heightOffset) / b.scale;
-			detections[pos].width = detectorInfo[0].classifierWidth / b.scale;
-			detections[pos].height = detectorInfo[0].classifierHeight / b.scale;
+			detections[pos].x = x * b.scale;
+			detections[pos].y = (y - b.heightOffset) * b.scale;
+			detections[pos].width = detectorInfo[0].classifierWidth * b.scale;
+			detections[pos].height = detectorInfo[0].classifierHeight * b.scale;
 			detections[pos].response = response;
 		}
 		

@@ -47,7 +47,7 @@ const uint32 STAGE_COUNT = 2048;
 const uint8 CLASSIFIER_WIDTH = 26;
 const uint8 CLASSIFIER_HEIGHT = 26;
 
-#define PYRAMID_IMAGE_COUNT 10
-#define SCALE_FACTOR 1.5f
+#define PYRAMID_IMAGE_COUNT 32
+#define FINAL_THRESHOLD 0.0f
 
 #endif
