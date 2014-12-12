@@ -35,9 +35,8 @@ struct DetectorInfo {
 };
 
 struct Bounds {
-	uint32 start;
-	uint32 end;
-	uint32 heightOffset;
+	uint32 offset, x_offset, y_offset;	
+	uint32 width, height;
 	float scale;
 };
 

@@ -20,9 +20,9 @@ cudaError_t runKernelWrapper(uint8* /* device image */, Detection* /* device det
 /// runs object detectin on gpu itself
 __device__ void detect(uint8* /* device image */, Detection* /* detections */, uint32* /* detection count */, uint16 /* starting stage */, uint16 /* ending stage */, Bounds*);
 /// gpu bilinear interpolation
-__device__ void bilinearInterpolation(uint8* /* input image */, uint8* /* output image */, const float /* scale */);
+__device__ void bilinearInterpolation(uint8* /* output image */, const float /* scale */);
 /// builds a pyramid image with parameters set in header.h
-__device__ void buildPyramid(uint8* /* device image */, uint32, uint32, uint32, uint32, Bounds*, uint32);
+__device__ void buildPyramid(uint8* /* device image */, uint32, uint32, uint32, uint32, Bounds*, uint32, uint32);
 
 /// detector stages
 __constant__ Stage stages[STAGE_COUNT];
@@ -35,46 +35,78 @@ texture<uint8> textureOriginalImage;
 texture<float> textureAlphas;
 
 __global__ void pyramidImageKernel(uint8* imageData, Bounds* bounds) {
-	buildPyramid(imageData, 160, 120, 48.0f, 48.0f, bounds, 16);	
+	buildPyramid(imageData, 320, 240, 48, 48, bounds, 8, 4);	
 }
 
-__device__ void buildPyramid(uint8* imageData, uint32 max_x, uint32 max_y, uint32 min_x, uint32 min_y, Bounds* bounds, uint32 octaves)
+__device__ void buildPyramid(uint8* imageData, uint32 max_x, uint32 max_y, uint32 min_x, uint32 min_y, Bounds* bounds, uint32 octaves, uint32 levels_per_octave)
 {
-	const int x = blockIdx.x*blockDim.x + threadIdx.x;
-	const int y = blockIdx.y*blockDim.y + threadIdx.y;
+	// coords in the original image
+	const int x = (blockIdx.x * blockDim.x) + threadIdx.x;
+	const int y = (blockIdx.y * blockDim.y) + threadIdx.y;
 
-	float scaling_factor = pow(2.0f, 1.0f / 4.0f);
-	bool is_landscape = detectorInfo[0].imageWidth > detectorInfo[0].imageHeight;
-
-	float current_scale = is_landscape ? (float)detectorInfo[0].imageWidth / (float)max_x : (float)detectorInfo[0].imageHeight / (float)max_y;
-
-	uint32 offset = (detectorInfo[0].imageWidth * detectorInfo[0].imageHeight);
-	uint32 h_offset = detectorInfo[0].imageHeight;
-
-	uint32 image_width = detectorInfo[0].imageWidth / current_scale;
-	uint32 image_height = detectorInfo[0].imageHeight / current_scale;
-
+	// only index data in the original image
 	if (x < (detectorInfo[0].imageWidth - 1) && y < (detectorInfo[0].imageHeight - 1))
 	{
-		for (int level = 0; level < octaves; ++level)
+
+		float scaling_factor = pow(2.0f, 1.0f / levels_per_octave);
+		bool is_landscape = detectorInfo[0].imageWidth > detectorInfo[0].imageHeight;
+
+		uint32 init_offset = detectorInfo[0].pyramidImageWidth * detectorInfo[0].imageHeight;
+		uint32 init_y_offset = detectorInfo[0].imageHeight;
+		uint32 init_x_offset = 0;
+
+		uint32 offset, y_offset = init_y_offset, x_offset;
+		for (uint8 octave = 0; octave < octaves; ++octave)
 		{
-			bilinearInterpolation(imageData, imageData + offset, current_scale);
+			uint32 max_width = max_x / (octave + 1);
+			uint32 max_height = max_y / (octave + 1);
 
-			bounds[level].start = offset;
-			bounds[level].heightOffset = h_offset;
-			bounds[level].end = offset + (detectorInfo[0].pyramidImageWidth * image_height);
-			bounds[level].scale = current_scale;			
+			// box to which fit the resized image
+			float current_scale = is_landscape ? (float)detectorInfo[0].imageWidth / (float)max_width : (float)detectorInfo[0].imageHeight / (float)max_height;
 
-			h_offset += image_height;
-			offset += image_height * detectorInfo[0].imageWidth;
+			uint32 image_width = detectorInfo[0].imageWidth / current_scale;
+			uint32 image_height = detectorInfo[0].imageHeight / current_scale;
 
-			current_scale *= scaling_factor;
-			image_height *= scaling_factor;
+			// set current X-offset to the beginning and total offset based on current octave
+			x_offset = init_x_offset;
+			offset = init_offset;
+			for (uint8 i = 0; i < octave; ++i)
+				offset += (max_y / (i + 1)) * detectorInfo[0].pyramidImageWidth;
+
+			// set starting scale based on current octave		
+			uint32 final_y_offset = image_height;
+
+			// process all levels of the pyramid
+			for (uint8 level = 0; level < levels_per_octave; ++level)
+			{				
+				bilinearInterpolation(imageData + offset, current_scale);
+
+				if (x == 0 && y == 0) {
+					uint32 bounds_id = levels_per_octave * octave + level;
+					bounds[bounds_id].offset = offset;
+					bounds[bounds_id].y_offset = y_offset;
+					bounds[bounds_id].x_offset = x_offset;
+					bounds[bounds_id].width = image_width;
+					bounds[bounds_id].height = image_height;
+					bounds[bounds_id].scale = current_scale;
+				}
+
+				current_scale *= scaling_factor;
+				x_offset += image_width;
+				offset += image_width;
+
+				image_width = detectorInfo[0].imageWidth / current_scale;
+				image_height = detectorInfo[0].imageHeight / current_scale;
+
+				if (image_width < min_x || image_height < min_y)
+					break;
+			}
+
+			y_offset += final_y_offset;
 		}
 	}
 }
 
-	
 
 /// detection kernels
 
@@ -82,32 +114,14 @@ __global__ void detectionKernel1(uint8* imageData, Detection* detections, uint32
 {
 	detect(imageData, detections, detectionCount, 0, 2048, bounds);
 }
-/*
-__global__ void detectionKernel2(uint8* imageData, Detection* detections, uint32* detectionCount)
-{
-	detect(imageData, detections, detectionCount, 512, 1024);
-}
 
-
-__global__ void detectionKernel3(uint8* imageData, Detection* detections, uint32* detectionCount)
-{
-	detect(imageData, detections, detectionCount, 1024, 1536);
-}
-
-
-__global__ void detectionKernel4(uint8* imageData, Detection* detections, uint32* detectionCount)
-{
-	detect(imageData, detections, detectionCount, 1536, 2048);
-}*/
-
-
-__device__ void bilinearInterpolation(uint8* inImage, uint8* outImage, const float scale)
-{	
+__device__ void bilinearInterpolation(uint8* outImage, float scale)
+{			
 	const int origX = blockIdx.x*blockDim.x + threadIdx.x;
 	const int origY = blockIdx.y*blockDim.y + threadIdx.y;
 
-	const int x = origX / scale;
-	const int y = origY / scale;	
+	const int x = (float)origX / scale;
+	const int y = (float)origY / scale;	
 
 	uint8 res = tex1Dfetch(textureOriginalImage, origY * detectorInfo[0].imageWidth + origX);
 
@@ -168,23 +182,23 @@ __device__ void detect(uint8* imageData, Detection* detections, uint32* detectio
 	const int x = blockIdx.x*blockDim.x + threadIdx.x;
 	const int y = blockIdx.y*blockDim.y + threadIdx.y;
 
-	if (x < (detectorInfo[0].pyramidImageWidth - detectorInfo[0].classifierWidth) && y < (detectorInfo[0].pyramidImageHeight - detectorInfo[0].classifierHeight)) {
-		
+	if (x < (detectorInfo[0].pyramidImageWidth - detectorInfo[0].classifierWidth) && y < (detectorInfo[0].pyramidImageHeight - detectorInfo[0].classifierHeight))
+	{		
 		float response = 0.0f;
 		if (eval(imageData, &response, startStage, endStage)) {
 
-			Bounds b;
-			uint32 ptr = y * detectorInfo[0].pyramidImageWidth + x;
-			for (uint8 i = 0; i < PYRAMID_IMAGE_COUNT; ++i) {
-				if (ptr >= bounds[i].start && ptr < bounds[i].end) {
+			Bounds b;			
+			for (uint8 i = 0; i < 8 * 3; ++i) {
+				if (x >= bounds[i].x_offset && x < (bounds[i].x_offset + bounds[i].width) &&
+					y >= bounds[i].y_offset && y < (bounds[i].y_offset + bounds[i].height)) {
 					b = bounds[i];
 					break;
 				}
-			}
+			}		
 
 			uint32 pos = atomicInc(detectionCount, 2048);
-			detections[pos].x = x * b.scale;
-			detections[pos].y = (y - b.heightOffset) * b.scale;
+			detections[pos].x = (float)(x - b.x_offset) * b.scale;
+			detections[pos].y = (float)(y - b.y_offset) * b.scale;
 			detections[pos].width = detectorInfo[0].classifierWidth * b.scale;
 			detections[pos].height = detectorInfo[0].classifierHeight * b.scale;
 			detections[pos].response = response;
@@ -195,17 +209,37 @@ __device__ void detect(uint8* imageData, Detection* detections, uint32* detectio
 
 cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* detectionCount, Bounds* bounds)
 {
+	cudaEvent_t start_detection, stop_detection, start_pyramid, stop_pyramid;
+	cudaEventCreate(&start_detection);
+	cudaEventCreate(&stop_detection);
+	cudaEventCreate(&start_pyramid);
+	cudaEventCreate(&stop_pyramid);
+
+	float pyramid_time = 0.f, detection_time = 0.f;
+
 	cudaError_t cudaStatus;
 	cudaStatus = cudaSetDevice(0);
 
-	dim3 grid(16, 64);
+	dim3 grid(32, 128);
 	dim3 block(32, 32);
-
+	
+	cudaEventRecord(start_pyramid);
 	pyramidImageKernel <<<grid, block>>> (imageData, bounds);	
-
+	cudaEventRecord(stop_pyramid);
+	cudaEventSynchronize(stop_pyramid);
+	cudaEventElapsedTime(&pyramid_time, start_pyramid, stop_pyramid);
+	
+	printf("Time for the pyramidImageKernel: %f ms\n", pyramid_time);
 	cudaThreadSynchronize();
-
+	
+	cudaEventRecord(start_detection);
 	detectionKernel1 <<<grid, block>>>(imageData, detections, detectionCount, bounds);
+	cudaEventRecord(stop_detection);
+	cudaEventSynchronize(stop_detection);	
+	cudaEventElapsedTime(&detection_time, start_detection, stop_detection);
+
+	printf("Time for the detectionKernel1: %f ms\n", detection_time);
+	printf("Total time: %f ms \n", pyramid_time + detection_time);
 
 	//detectionKernel2 <<<grid, block>>>(imageData, detections, detectionCount, alphas);
 
@@ -280,7 +314,7 @@ int main(int argc, char** argv)
 		
 		// TODO: rewrite this
 		const size_t ORIG_IMAGE_SIZE = image_bw.cols * image_bw.rows * sizeof(uint8);		
-		const size_t PYRAMID_IMAGE_HEIGHT = image_bw.rows * PYRAMID_IMAGE_COUNT;
+		const size_t PYRAMID_IMAGE_HEIGHT = image_bw.rows * 3;
 		const size_t PYRAMID_IMAGE_WIDTH = image_bw.cols;
 		const size_t PYRAMID_IMAGE_SIZE = PYRAMID_IMAGE_HEIGHT * PYRAMID_IMAGE_WIDTH;
 					
