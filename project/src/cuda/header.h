@@ -49,4 +49,15 @@ const uint8 CLASSIFIER_HEIGHT = 26;
 #define PYRAMID_IMAGE_COUNT 32
 #define FINAL_THRESHOLD 0.0f
 
+const bool VISUAL_OUTPUT = true;
+const uint32 WAIT_DELAY = 10;
+
+enum Filetypes {
+	INPUT_IMAGE = 1,
+	INPUT_DATASET,
+	INPUT_VIDEO,
+
+	INPUT_UNDEFINED
+};
+
 #endif

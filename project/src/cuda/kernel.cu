@@ -260,180 +260,238 @@ cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* de
 	return cudaStatus;
 }
 
-int main(int argc, char** argv)
+bool runDetector(cv::Mat* image)
 {
-	std::string inputFilename;
-	bool dataset = false;
-	for (int i = 1; i < argc; ++i)
-	{
-		if (std::string(argv[i]) == "-i" && i + 1 < argc) {
-			inputFilename = argv[++i];
-		}
-		if (std::string(argv[i]) == "-d" && i + 1 < argc) {
-			dataset = true;
-			inputFilename = argv[++i];
-		}
-		else {
-			std::cerr << "Usage: " << argv[0] << " -i [input file]" << std::endl;
-			return EXIT_FAILURE;
-		}
+	cv::Mat image_bw;
+
+	// TODO: do b&w conversion on GPU
+	cvtColor(*image, image_bw, CV_RGB2GRAY);
+
+	// TODO: rewrite this
+	const size_t ORIG_IMAGE_SIZE = image_bw.cols * image_bw.rows * sizeof(uint8);
+	const size_t PYRAMID_IMAGE_HEIGHT = image_bw.rows * 3;
+	const size_t PYRAMID_IMAGE_WIDTH = image_bw.cols;
+	const size_t PYRAMID_IMAGE_SIZE = PYRAMID_IMAGE_HEIGHT * PYRAMID_IMAGE_WIDTH;
+
+
+	// ********* DEVICE VARIABLES **********
+	float* devAlphaBuffer;
+	uint8* devImageData, *devOriginalImage;
+	uint32* devDetectionCount;
+	Detection* devDetections;
+	Bounds* devBounds;
+
+	// ********* HOST VARIABLES *********
+	uint8* hostImageData;
+	hostImageData = (uint8*)malloc(sizeof(uint8) * PYRAMID_IMAGE_SIZE);
+	uint32 hostDetectionCount = 0;
+	Detection hostDetections[MAX_DETECTIONS];
+
+	// ********* CONSTANTS **********
+	DetectorInfo hostDetectorInfo[1];
+	hostDetectorInfo[0].imageWidth = image_bw.cols;
+	hostDetectorInfo[0].imageHeight = image_bw.rows;
+	hostDetectorInfo[0].pyramidImageWidth = PYRAMID_IMAGE_WIDTH;
+	hostDetectorInfo[0].pyramidImageHeight = PYRAMID_IMAGE_HEIGHT;
+	hostDetectorInfo[0].classifierWidth = CLASSIFIER_WIDTH;
+	hostDetectorInfo[0].classifierHeight = CLASSIFIER_HEIGHT;
+	hostDetectorInfo[0].alphaCount = ALPHA_COUNT;
+	hostDetectorInfo[0].stageCount = STAGE_COUNT;
+
+	// ********* GPU MEMORY ALLOCATION-COPY **********		
+	// constant memory
+	cudaMemcpyToSymbol(stages, hostStages, sizeof(Stage) * STAGE_COUNT);
+	cudaMemcpyToSymbol(detectorInfo, hostDetectorInfo, sizeof(DetectorInfo));
+
+	// texture memory		
+	cudaMalloc(&devAlphaBuffer, STAGE_COUNT * ALPHA_COUNT * sizeof(float));
+	cudaMemcpy(devAlphaBuffer, alphas, STAGE_COUNT * ALPHA_COUNT * sizeof(float), cudaMemcpyHostToDevice);
+
+
+	cudaMalloc(&devImageData, PYRAMID_IMAGE_SIZE * sizeof(uint8));
+	cudaMalloc(&devOriginalImage, ORIG_IMAGE_SIZE * sizeof(uint8));
+	cudaMalloc((void**)&devDetectionCount, sizeof(uint32));
+	cudaMalloc((void**)&devDetections, MAX_DETECTIONS * sizeof(Detection));
+	cudaMalloc((void**)&devBounds, PYRAMID_IMAGE_COUNT * sizeof(Bounds));
+
+
+	uint8* clean = (uint8*)malloc(PYRAMID_IMAGE_SIZE * sizeof(uint8));
+	memset(clean, 0, PYRAMID_IMAGE_SIZE * sizeof(uint8));
+
+	cudaMemcpy(devImageData, clean, PYRAMID_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
+	cudaMemcpy(devImageData, image_bw.data, ORIG_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
+	cudaMemcpy(devOriginalImage, image_bw.data, ORIG_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
+	cudaMemcpy(devDetectionCount, &hostDetectionCount, sizeof(uint32), cudaMemcpyHostToDevice);
+
+	cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc<uint8>();
+	cudaBindTexture(nullptr, &textureOriginalImage, devOriginalImage, &channelDesc, sizeof(uint8) * ORIG_IMAGE_SIZE);
+
+	cudaChannelFormatDesc alphaChannelDesc = cudaCreateChannelDesc<float>();
+	cudaBindTexture(nullptr, &textureAlphas, devAlphaBuffer, &alphaChannelDesc, STAGE_COUNT * ALPHA_COUNT * sizeof(float));
+
+	// ********* RUN ALL THEM KERNELS! **********		
+
+	cudaError_t cudaStatus = runKernelWrapper(
+		devImageData,
+		devDetections,
+		devDetectionCount,
+		devBounds
+		);
+
+	// ********* COPY RESULTS FROM GPU *********
+
+	cudaMemcpy(&hostDetectionCount, devDetectionCount, sizeof(uint32), cudaMemcpyDeviceToHost);
+	cudaMemcpy(hostDetections, devDetections, hostDetectionCount * sizeof(Detection), cudaMemcpyDeviceToHost);
+	cudaMemcpy(hostImageData, devImageData, sizeof(uint8) * PYRAMID_IMAGE_SIZE, cudaMemcpyDeviceToHost);
+
+	// ********* FREE CUDA MEMORY *********
+	cudaFree(devDetectionCount);
+	cudaFree(devImageData);
+	cudaFree(devOriginalImage);
+	cudaUnbindTexture(textureOriginalImage);
+	cudaFree(devDetections);
+	cudaFree(devAlphaBuffer);
+
+	// ********* SHOW RESULTS *********
+
+	// pyramid image
+	cv::Mat pyramidImage(cv::Size(PYRAMID_IMAGE_WIDTH, PYRAMID_IMAGE_HEIGHT), CV_8U);
+	pyramidImage.data = hostImageData;
+
+	#ifdef DEBUG
+	std::cout << "Detection count: " << hostDetectionCount << std::endl;
+	#endif
+
+	for (uint32 i = 0; i < hostDetectionCount; ++i) {
+		#ifdef DEBUG
+		std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
+		#endif
+
+		cv::rectangle(*image, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(0, 0, 0), 3);
+		cv::rectangle(*image, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(255, 255, 255));
+	}
+	
+	// ******** FREE HOST MEMORY *********
+	free(hostImageData);
+
+	if (cudaStatus != cudaSuccess) {
+		std::cerr << "[" << LIBNAME << "]: " << "CUDA runtime error" << std::endl;;
+		return false;
 	}
 
-	std::vector<cv::Mat> images;
-	if (dataset) {
-		std::ifstream in;
-		in.open(inputFilename);
+	// needed for profiling - NSight
+	cudaStatus = cudaDeviceReset();
+	if (cudaStatus != cudaSuccess) {
+		std::cerr << "[" << LIBNAME << "]: " << "cudaDeviceReset failed" << std::endl;;
+		return false;
+	}
 
-		std::string filename;
-		while (!in.eof()) {
-			std::getline(in, filename);
-			cv::Mat image = cv::imread(filename.c_str(), CV_LOAD_IMAGE_COLOR);
+	return true;
+}
+
+bool process(std::string filename, Filetypes mode) {
+	
+	cv::Mat image;
+
+	switch (mode)
+	{
+		case INPUT_IMAGE:
+		{
+			image = cv::imread(filename.c_str(), CV_LOAD_IMAGE_COLOR);
 
 			if (!image.data)			
 				std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (filename: " << filename << ")" << std::endl;
 
-			images.push_back(image);
+			runDetector(&image);
+
+			if (VISUAL_OUTPUT)
+			{
+				cv::imshow(LIBNAME, image);
+				cv::waitKey(WAIT_DELAY);
+			}
+
+			break;
 		}
-	}
-	else {
-		cv::Mat image = cv::imread(inputFilename.c_str(), CV_LOAD_IMAGE_COLOR);
+		case INPUT_DATASET:
+		{
+			std::ifstream in;
+			in.open(filename);
+			std::string file;
+			while (!in.eof())
+			{
+				std::getline(in, file);
+				image = cv::imread(filename.c_str(), CV_LOAD_IMAGE_COLOR);
 
-		if (!image.data)		
-			std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (filename: " << inputFilename << ")" << std::endl;
+				if (!image.data)
+				{
+					std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (filename: " << filename << ")" << std::endl;
+					continue;
+				}
 
-		images.push_back(image);
+				runDetector(&image);
+
+				if (VISUAL_OUTPUT)
+				{
+					cv::imshow(LIBNAME, image);
+					cv::waitKey(WAIT_DELAY);
+				}
+			}
+			break;
+		}
+		case INPUT_VIDEO:
+		{
+			cv::VideoCapture video;
+
+			video.open(filename);			
+			while (true) {
+				video >> image;
+
+				if (image.empty())
+					break;
+
+				runDetector(&image);
+
+				if (VISUAL_OUTPUT)
+				{
+					cv::imshow(LIBNAME, image);
+					cv::waitKey(WAIT_DELAY);
+				}
+			}
+			video.release();
+			break;		
+		}
+		default:
+			return false;			
 	}
-	
-	for (std::vector<cv::Mat>::const_iterator it = images.begin(); it != images.end(); ++it)
+
+	return true;
+}
+
+int main(int argc, char** argv)
+{
+	std::string inputFilename;	
+	Filetypes mode;
+	for (int i = 1; i < argc; ++i)
 	{
-		cv::Mat image = *it;
-		cv::Mat image_bw;
-
-		// TODO: do b&w conversion on GPU
-		cvtColor(image, image_bw, CV_RGB2GRAY);				
-		
-		// TODO: rewrite this
-		const size_t ORIG_IMAGE_SIZE = image_bw.cols * image_bw.rows * sizeof(uint8);		
-		const size_t PYRAMID_IMAGE_HEIGHT = image_bw.rows * 3;
-		const size_t PYRAMID_IMAGE_WIDTH = image_bw.cols;
-		const size_t PYRAMID_IMAGE_SIZE = PYRAMID_IMAGE_HEIGHT * PYRAMID_IMAGE_WIDTH;
-					
-
-		// ********* DEVICE VARIABLES **********
-		float* devAlphaBuffer;
-		uint8* devImageData, *devOriginalImage;
-		uint32* devDetectionCount;
-		Detection* devDetections;
-		Bounds* devBounds;
-
-		// ********* HOST VARIABLES *********
-		uint8* hostImageData;
-		hostImageData = (uint8*)malloc(sizeof(uint8) * PYRAMID_IMAGE_SIZE);
-		uint32 hostDetectionCount = 0;
-		Detection hostDetections[MAX_DETECTIONS];		
-
-		// ********* CONSTANTS **********
-		DetectorInfo hostDetectorInfo[1];
-		hostDetectorInfo[0].imageWidth = image_bw.cols;
-		hostDetectorInfo[0].imageHeight = image_bw.rows;
-		hostDetectorInfo[0].pyramidImageWidth = PYRAMID_IMAGE_WIDTH;
-		hostDetectorInfo[0].pyramidImageHeight = PYRAMID_IMAGE_HEIGHT;
-		hostDetectorInfo[0].classifierWidth = CLASSIFIER_WIDTH;
-		hostDetectorInfo[0].classifierHeight = CLASSIFIER_HEIGHT;
-		hostDetectorInfo[0].alphaCount = ALPHA_COUNT;
-		hostDetectorInfo[0].stageCount = STAGE_COUNT;
-		
-		// ********* GPU MEMORY ALLOCATION-COPY **********		
-		// constant memory
-		cudaMemcpyToSymbol(stages, hostStages, sizeof(Stage) * STAGE_COUNT);
-		cudaMemcpyToSymbol(detectorInfo, hostDetectorInfo, sizeof(DetectorInfo));
-		
-		// texture memory		
-		cudaMalloc(&devAlphaBuffer, STAGE_COUNT * ALPHA_COUNT * sizeof(float));		
-		cudaMemcpy(devAlphaBuffer, alphas, STAGE_COUNT * ALPHA_COUNT * sizeof(float), cudaMemcpyHostToDevice);
-		
-
-		cudaMalloc(&devImageData, PYRAMID_IMAGE_SIZE * sizeof(uint8));
-		cudaMalloc(&devOriginalImage, ORIG_IMAGE_SIZE * sizeof(uint8));
-		cudaMalloc((void**)&devDetectionCount, sizeof(uint32));		
-		cudaMalloc((void**)&devDetections, MAX_DETECTIONS * sizeof(Detection));
-		cudaMalloc((void**)&devBounds, PYRAMID_IMAGE_COUNT * sizeof(Bounds));
-		
-
-		uint8* clean = (uint8*)malloc(PYRAMID_IMAGE_SIZE * sizeof(uint8));
-		memset(clean, 0, PYRAMID_IMAGE_SIZE * sizeof(uint8));
-
-		cudaMemcpy(devImageData, clean, PYRAMID_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
-		cudaMemcpy(devImageData, image_bw.data, ORIG_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
-		cudaMemcpy(devOriginalImage, image_bw.data, ORIG_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
-		cudaMemcpy(devDetectionCount, &hostDetectionCount, sizeof(uint32), cudaMemcpyHostToDevice);	
-		
-		cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc<uint8>();
-		cudaBindTexture(nullptr, &textureOriginalImage, devOriginalImage, &channelDesc, sizeof(uint8) * ORIG_IMAGE_SIZE);
-
-		cudaChannelFormatDesc alphaChannelDesc = cudaCreateChannelDesc<float>();
-		cudaBindTexture(nullptr, &textureAlphas, devAlphaBuffer, &alphaChannelDesc, STAGE_COUNT * ALPHA_COUNT * sizeof(float));
-
-		// ********* RUN ALL THEM KERNELS! **********		
-
-		cudaError_t cudaStatus = runKernelWrapper(
-			devImageData, 
-			devDetections, 
-			devDetectionCount,
-			devBounds
-		);
-
-		// ********* COPY RESULTS FROM GPU *********
-		
-		cudaMemcpy(&hostDetectionCount, devDetectionCount, sizeof(uint32), cudaMemcpyDeviceToHost);
-		cudaMemcpy(hostDetections, devDetections, hostDetectionCount * sizeof(Detection), cudaMemcpyDeviceToHost);
-		cudaMemcpy(hostImageData, devImageData, sizeof(uint8) * PYRAMID_IMAGE_SIZE, cudaMemcpyDeviceToHost);
-
-		// ********* FREE CUDA MEMORY *********
-		cudaFree(devDetectionCount);
-		cudaFree(devImageData);
-		cudaFree(devOriginalImage);
-		cudaUnbindTexture(textureOriginalImage);
-		cudaFree(devDetections);
-		cudaFree(devAlphaBuffer);
-
-		// ********* SHOW RESULTS *********
-
-		// pyramid image
-		cv::Mat pyramidImage(cv::Size(PYRAMID_IMAGE_WIDTH, PYRAMID_IMAGE_HEIGHT), CV_8U);
-		pyramidImage.data = hostImageData;
-
-		cv::imshow("Pyramid Image", pyramidImage);
-		cv::waitKey();
-
-		// show detections
-		std::cout << "Detection count: " << hostDetectionCount << std::endl;
-
-		for (uint32 i = 0; i < hostDetectionCount; ++i) {
-			std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
-
-			cv::rectangle(pyramidImage, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(0, 0, 0), 3);
-			cv::rectangle(pyramidImage, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(255, 255, 255));
+		if (std::string(argv[i]) == "-ii" && i + 1 < argc) {
+			mode = INPUT_IMAGE;
+			inputFilename = argv[++i];
 		}
-		
-		cv::imshow("Detections", pyramidImage);
-		cv::waitKey();
-
-		// ******** FREE HOST MEMORY *********
-		free(hostImageData);
-
-		if (cudaStatus != cudaSuccess) {
-			std::cerr << "[" << LIBNAME << "]: " << "CUDA runtime error" << std::endl;;
+		if (std::string(argv[i]) == "-di" && i + 1 < argc) {
+			mode = INPUT_DATASET;			
+			inputFilename = argv[++i];
+		}
+		if (std::string(argv[i]) == "-iv" && i + 1 < argc) {
+			mode = INPUT_VIDEO;
+			inputFilename = argv[++i];
+		}
+		else {
+			std::cerr << "Usage: " << argv[0] << " -ii [input file] or -di [dataset] or -iv [input video]" << std::endl;
 			return EXIT_FAILURE;
 		}
+	}
 
-		// needed for profiling - NSight
-		cudaStatus = cudaDeviceReset();
-		if (cudaStatus != cudaSuccess) {
-			std::cerr << "[" << LIBNAME << "]: " << "cudaDeviceReset failed" << std::endl;;
-			return EXIT_FAILURE;
-		}
-	}	
+	process(inputFilename, mode);
 
     return EXIT_SUCCESS;
 }
