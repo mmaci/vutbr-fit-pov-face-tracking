@@ -15,7 +15,7 @@
 #include "alphas.h"
 
 /// wrapper to call kernels
-cudaError_t runKernelWrapper(uint8* /* device image */, Detection* /* device detection buffer */, uint32* /* device detection count */, Bounds*);
+cudaError_t runKernelWrapper(uint8* /* device image */, Detection* /* device detection buffer */, uint32* /* device detection count */, Bounds*, const size_t);
 
 /// runs object detectin on gpu itself
 __device__ void detect(uint8* /* device image */, Detection* /* detections */, uint32* /* detection count */, uint16 /* starting stage */, uint16 /* ending stage */, Bounds*);
@@ -32,6 +32,7 @@ __constant__ DetectorInfo detectorInfo[1];
 /// pyramid kernel
 
 texture<uint8> textureOriginalImage;
+texture<uint8> texturePyramidImage;
 texture<float> textureAlphas;
 
 __global__ void pyramidImageKernel(uint8* imageData, Bounds* bounds) {
@@ -128,33 +129,34 @@ __device__ void bilinearInterpolation(uint8* outImage, float scale)
 	outImage[y * detectorInfo[0].pyramidImageWidth + x] = res;
 }
 
-__device__ void sumRegions(uint8* imageData, Stage* stage, uint32* values)
-{
-	uint32 baseX = blockIdx.x * blockDim.x + threadIdx.x + stage->x;
-	uint32 baseY = blockIdx.y * blockDim.y + threadIdx.y + stage->y;
-
-	for (uint32 i = 0; i < 9; ++i) {
-		uint32 startX = baseX + (i % 3) * stage->width;
-		uint32 startY = baseY + (i / 3) * stage->height;
-
-		uint32 acc = 0;
-		for (uint32 x = startX; x < startX + stage->width; ++x) {
-			for (uint32 y = startY; y < startY + stage->height; ++y) {
-				acc += imageData[y * detectorInfo[0].imageWidth + x];
-			}
-		}
-
-		values[i] = acc;		
-	}
+__device__ void sumRegions(uint8* imageData, uint32 x, uint32 y, Stage* stage, uint32* values)
+{	
+	values[0] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
+	x += stage->width;
+	values[1] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
+	x += stage->width;
+	values[2] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
+	y += stage->height;
+	values[5] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
+	y += stage->height;
+	values[8] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
+	x -= stage->width;
+	values[7] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
+	x -= stage->width;
+	values[6] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
+	y -= stage->height;
+	values[3] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
+	x += stage->width;
+	values[4] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
 }
 
-__device__ float evalLBP(uint8* data, Stage* stage)
+__device__ float evalLBP(uint8* data, uint32 x, uint32 y, Stage* stage)
 {
 	const uint8 LBPOrder[8] = { 0, 1, 2, 5, 8, 7, 6, 3 };
 
 	uint32 values[9];
 
-	sumRegions(data, stage, values);
+	sumRegions(data, x, y, stage, values);
 
 	uint8 code = 0;
 	for (uint8 i = 0; i < 8; ++i)
@@ -163,11 +165,11 @@ __device__ float evalLBP(uint8* data, Stage* stage)
 	return tex1Dfetch(textureAlphas, stage->alphaOffset + code);
 }
 
-__device__ bool eval(uint8* imageData, float* response, uint16 startStage, uint16 endStage)
+__device__ bool eval(uint8* imageData, uint32 x, uint32 y, float* response, uint16 startStage, uint16 endStage)
 {	
 	for (uint16 i = startStage; i < endStage; ++i) {		
 		Stage stage = stages[i];
-		*response += evalLBP(imageData, &stage);
+		*response += evalLBP(imageData, x + stage.x, y + stage.y, &stage);
 		if (*response < stage.thetaB) {
 			return false;
 		}
@@ -185,7 +187,7 @@ __device__ void detect(uint8* imageData, Detection* detections, uint32* detectio
 	if (x < (detectorInfo[0].pyramidImageWidth - detectorInfo[0].classifierWidth) && y < (detectorInfo[0].pyramidImageHeight - detectorInfo[0].classifierHeight))
 	{		
 		float response = 0.0f;
-		if (eval(imageData, &response, startStage, endStage)) {
+		if (eval(imageData, x, y, &response, startStage, endStage)) {
 
 			Bounds b;			
 			for (uint8 i = 0; i < 8 * 3; ++i) {
@@ -207,7 +209,7 @@ __device__ void detect(uint8* imageData, Detection* detections, uint32* detectio
 	}
 }
 
-cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* detectionCount, Bounds* bounds)
+cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* detectionCount, Bounds* bounds, const size_t pyramidImageSize)
 {
 	cudaEvent_t start_detection, stop_detection, start_pyramid, stop_pyramid;
 	cudaEventCreate(&start_detection);
@@ -231,6 +233,10 @@ cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* de
 	
 	printf("Time for the pyramidImageKernel: %f ms\n", pyramid_time);
 	cudaThreadSynchronize();
+
+	// bind created pyramid to texture memory
+	cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc<uint8>();
+	cudaBindTexture(nullptr, &texturePyramidImage, imageData, &channelDesc, sizeof(uint8) * pyramidImageSize);
 	
 	cudaEventRecord(start_detection);
 	detectionKernel1 <<<grid, block>>>(imageData, detections, detectionCount, bounds);
@@ -335,7 +341,8 @@ bool runDetector(cv::Mat* image)
 		devImageData,
 		devDetections,
 		devDetectionCount,
-		devBounds
+		devBounds,
+		PYRAMID_IMAGE_SIZE
 		);
 
 	// ********* COPY RESULTS FROM GPU *********
