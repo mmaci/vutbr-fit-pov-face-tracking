@@ -96,8 +96,8 @@ __device__ void buildPyramid(uint8* imageData, uint32 max_x, uint32 max_y, uint3
 				x_offset += image_width;
 				offset += image_width;
 
-				image_width = detectorInfo[0].imageWidth / current_scale;
-				image_height = detectorInfo[0].imageHeight / current_scale;
+				image_width = (float)detectorInfo[0].imageWidth / current_scale;
+				image_height = (float)detectorInfo[0].imageHeight / current_scale;
 
 				if (image_width < min_x || image_height < min_y)
 					break;
@@ -240,6 +240,9 @@ cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* de
 	
 	cudaEventRecord(start_detection);
 	detectionKernel1 <<<grid, block>>>(imageData, detections, detectionCount, bounds);
+
+	cudaUnbindTexture(texturePyramidImage);
+
 	cudaEventRecord(stop_detection);
 	cudaEventSynchronize(stop_detection);	
 	cudaEventElapsedTime(&detection_time, start_detection, stop_detection);
@@ -356,6 +359,7 @@ bool runDetector(cv::Mat* image)
 	cudaFree(devImageData);
 	cudaFree(devOriginalImage);
 	cudaUnbindTexture(textureOriginalImage);
+	cudaUnbindTexture(textureAlphas);
 	cudaFree(devDetections);
 	cudaFree(devAlphaBuffer);
 
@@ -374,8 +378,7 @@ bool runDetector(cv::Mat* image)
 		std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
 		#endif
 
-		cv::rectangle(*image, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(0, 0, 0), 3);
-		cv::rectangle(*image, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(255, 255, 255));
+		cv::rectangle(*image, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(0, 255, 0), 1);		
 	}
 	
 	// ******** FREE HOST MEMORY *********
