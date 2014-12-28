@@ -1,18 +1,32 @@
-       
+
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/features2d/features2d.hpp>
+#include <opencv2/nonfree/features2d.hpp>
 
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <stdio.h>
 
 #include "header.h"
 #include "detector.h"
 #include "alphas.h"
+
+#include <algorithm>
+#include <vector>
+
+struct Person {
+	bool active;
+	cv::MatND hist;
+	uint8 color[3];
+	size_t id;
+	Detection det;
+};
 
 /// wrapper to call kernels
 cudaError_t runKernelWrapper(uint8* /* device image */, Detection* /* device detection buffer */, uint32* /* device detection count */, Bounds*, const size_t);
@@ -35,8 +49,13 @@ texture<uint8> textureOriginalImage;
 texture<uint8> texturePyramidImage;
 texture<float> textureAlphas;
 
+/// tracking
+std::vector<Person> persons;
+//Person *persons[MAX_PERSONS];
+//uint8 personsCount = 0;
+
 __global__ void pyramidImageKernel(uint8* imageData, Bounds* bounds) {
-	buildPyramid(imageData, 320, 240, 48, 48, bounds, 8, 4);	
+	buildPyramid(imageData, 320, 240, 48, 48, bounds, 8, 4);
 }
 
 __device__ void buildPyramid(uint8* imageData, uint32 max_x, uint32 max_y, uint32 min_x, uint32 min_y, Bounds* bounds, uint32 octaves, uint32 levels_per_octave)
@@ -79,7 +98,7 @@ __device__ void buildPyramid(uint8* imageData, uint32 max_x, uint32 max_y, uint3
 
 			// process all levels of the pyramid
 			for (uint8 level = 0; level < levels_per_octave; ++level)
-			{				
+			{
 				bilinearInterpolation(imageData + offset, current_scale);
 
 				if (x == 0 && y == 0) {
@@ -117,12 +136,12 @@ __global__ void detectionKernel1(uint8* imageData, Detection* detections, uint32
 }
 
 __device__ void bilinearInterpolation(uint8* outImage, float scale)
-{			
+{
 	const int origX = blockIdx.x*blockDim.x + threadIdx.x;
 	const int origY = blockIdx.y*blockDim.y + threadIdx.y;
 
 	const int x = (float)origX / scale;
-	const int y = (float)origY / scale;	
+	const int y = (float)origY / scale;
 
 	uint8 res = tex1Dfetch(textureOriginalImage, origY * detectorInfo[0].imageWidth + origX);
 
@@ -130,7 +149,7 @@ __device__ void bilinearInterpolation(uint8* outImage, float scale)
 }
 
 __device__ void sumRegions(uint8* imageData, uint32 x, uint32 y, Stage* stage, uint32* values)
-{	
+{
 	values[0] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
 	x += stage->width;
 	values[1] = tex1Dfetch(texturePyramidImage, y * detectorInfo[0].imageWidth + x);
@@ -166,14 +185,14 @@ __device__ float evalLBP(uint8* data, uint32 x, uint32 y, Stage* stage)
 }
 
 __device__ bool eval(uint8* imageData, uint32 x, uint32 y, float* response, uint16 startStage, uint16 endStage)
-{	
-	for (uint16 i = startStage; i < endStage; ++i) {		
+{
+	for (uint16 i = startStage; i < endStage; ++i) {
 		Stage stage = stages[i];
 		*response += evalLBP(imageData, x + stage.x, y + stage.y, &stage);
 		if (*response < stage.thetaB) {
 			return false;
 		}
-	}	
+	}
 
 	// final waldboost threshold
 	return *response > FINAL_THRESHOLD;
@@ -185,18 +204,18 @@ __device__ void detect(uint8* imageData, Detection* detections, uint32* detectio
 	const int y = blockIdx.y*blockDim.y + threadIdx.y;
 
 	if (x < (detectorInfo[0].pyramidImageWidth - detectorInfo[0].classifierWidth) && y < (detectorInfo[0].pyramidImageHeight - detectorInfo[0].classifierHeight))
-	{		
+	{
 		float response = 0.0f;
 		if (eval(imageData, x, y, &response, startStage, endStage)) {
 
-			Bounds b;			
+			Bounds b;
 			for (uint8 i = 0; i < 8 * 3; ++i) {
 				if (x >= bounds[i].x_offset && x < (bounds[i].x_offset + bounds[i].width) &&
 					y >= bounds[i].y_offset && y < (bounds[i].y_offset + bounds[i].height)) {
 					b = bounds[i];
 					break;
 				}
-			}		
+			}
 
 			uint32 pos = atomicInc(detectionCount, 2048);
 			detections[pos].x = (float)(x - b.x_offset) * b.scale;
@@ -205,7 +224,7 @@ __device__ void detect(uint8* imageData, Detection* detections, uint32* detectio
 			detections[pos].height = detectorInfo[0].classifierHeight * b.scale;
 			detections[pos].response = response;
 		}
-		
+
 	}
 }
 
@@ -224,27 +243,27 @@ cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* de
 
 	dim3 grid(32, 128);
 	dim3 block(32, 32);
-	
+
 	cudaEventRecord(start_pyramid);
-	pyramidImageKernel <<<grid, block>>> (imageData, bounds);	
+	pyramidImageKernel << <grid, block >> > (imageData, bounds);
 	cudaEventRecord(stop_pyramid);
 	cudaEventSynchronize(stop_pyramid);
 	cudaEventElapsedTime(&pyramid_time, start_pyramid, stop_pyramid);
-	
+
 	printf("Time for the pyramidImageKernel: %f ms\n", pyramid_time);
 	cudaThreadSynchronize();
 
 	// bind created pyramid to texture memory
 	cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc<uint8>();
 	cudaBindTexture(nullptr, &texturePyramidImage, imageData, &channelDesc, sizeof(uint8) * pyramidImageSize);
-	
+
 	cudaEventRecord(start_detection);
-	detectionKernel1 <<<grid, block>>>(imageData, detections, detectionCount, bounds);
+	detectionKernel1 << <grid, block >> >(imageData, detections, detectionCount, bounds);
 
 	cudaUnbindTexture(texturePyramidImage);
 
 	cudaEventRecord(stop_detection);
-	cudaEventSynchronize(stop_detection);	
+	cudaEventSynchronize(stop_detection);
 	cudaEventElapsedTime(&detection_time, start_detection, stop_detection);
 
 	printf("Time for the detectionKernel1: %f ms\n", detection_time);
@@ -269,7 +288,58 @@ cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* de
 	return cudaStatus;
 }
 
-bool runDetector(cv::Mat* image)
+bool checkAndOverwrite(Detection* check, Detection* target)
+{
+	int32 x_overlap = std::max(0, (int32)(std::min(check->x + check->width, target->x + target->width) - std::max(check->x, target->x)));
+	int32 y_overlap = std::max(0, (int32)(std::min(check->y + check->height, target->y + target->height) - std::max(check->y, target->y)));
+	//std::cout << x_overlap << " a " <<  y_overlap << std::endl;
+
+	//std::cout << (x_overlap*y_overlap) << " check " << (check->width*check->height) << " target " << (target->width*target->height) << std::endl;
+	uint32 s = (x_overlap*y_overlap);
+	if (((s / (float)(check->width*check->height)) > OVERLAY) || ((s / (float)(target->width*target->height)) > OVERLAY)){
+		if (target->response < check->response){
+			target->x = check->x;
+			target->y = check->y;
+			target->width = check->width;
+			target->height = check->height;
+			target->response = check->response;
+			//target = check;
+
+		}
+		return true;
+	}
+	else
+	{
+		return false; //neprekryvaji se dostatecne
+	}
+
+}
+
+void separateDetections(Detection *detections, uint32 count, std::vector<Detection> *separate)
+{
+	//int32 spCount = 0;
+	if (count > 0){
+		//prvni priradim
+		separate->push_back(detections[0]);
+		for (uint32 i = 1; i < count; ++i) {
+			//porovnani s predchazejicima jestli se neprekryvaji
+			bool overwrite = false;
+			for (uint32 j = 0; j < separate->size(); j++){
+				//pokud prekryvaji vyberu ten s vetsim
+				//Detection* det = &separate->at(j);
+				if (checkAndOverwrite(&detections[i], &separate->at(j))){
+					overwrite = true;
+					break;
+				}
+			}
+			//pokud neprekryvaji ulozim na novou pozici
+			if (!overwrite)	separate->push_back(detections[i]);
+		}
+
+	}
+}
+
+bool runDetector(cv::Mat* image, std::ofstream *output)
 {
 	cv::Mat image_bw;
 
@@ -369,18 +439,135 @@ bool runDetector(cv::Mat* image)
 	cv::Mat pyramidImage(cv::Size(PYRAMID_IMAGE_WIDTH, PYRAMID_IMAGE_HEIGHT), CV_8U);
 	pyramidImage.data = hostImageData;
 
-	#ifdef DEBUG
+#ifdef DEBUG
 	std::cout << "Detection count: " << hostDetectionCount << std::endl;
-	#endif
+#endif
 
-	for (uint32 i = 0; i < hostDetectionCount; ++i) {
-		#ifdef DEBUG
-		std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
-		#endif
+#ifdef TRACKING
 
-		cv::rectangle(*image, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(0, 255, 0), 1);		
+	std::vector<Detection> separate;
+	separateDetections(hostDetections, hostDetectionCount, &separate);
+
+	for (uint32 i = 0; i < separate.size(); i++){
+
+		if (separate[i].x + separate[i].width >= (uint32)image->cols){
+			separate[i].width = image->cols - separate[i].x;
+		}
+		if (separate[i].y + separate[i].height >= (uint32)image->rows){
+			separate[i].height = image->rows - separate[i].y;
+		}
+		//std::cout << "pred obrazkem " << i << " x: " << separate[i].x << " y: " << separate[i].y << " wi: " << separate[i].width << " he: " << separate[i].height << " cols " << image->cols << " rows " << image->rows << std::endl;
+
+		cv::Mat faceImg = image->clone();
+
+		faceImg = cv::Mat(faceImg, (cv::Rect(separate[i].x, separate[i].y, separate[i].width, separate[i].height)));//vyber ROI
+		faceImg.copyTo(faceImg); //zkopirovani jen ROI
+
+		cvtColor(faceImg, faceImg, cv::COLOR_RGB2HSV);
+		int h_bins = 50; int s_bins = 60;
+		int histSize[] = { h_bins, s_bins };
+
+		// hue varies from 0 to 179, saturation from 0 to 255
+		float h_ranges[] = { 0, 180 };
+		float s_ranges[] = { 0, 256 };
+
+		const float* ranges[] = { h_ranges, s_ranges };
+
+		// Use the o-th and 1-st channels
+		int channels[] = { 0, 1 };
+		cv::MatND hist;
+
+		cv::calcHist(&faceImg, 1, channels, cv::Mat(), hist, 2, histSize, ranges, true, false);
+		cv::normalize(hist, hist, 0, 1, cv::NORM_MINMAX, -1, cv::Mat());
+
+		//desc.convertTo(desc, CV_32F);
+		if (persons.size() == 0){ //
+			//create new one and random color
+			//std::cout << "novy " << i << std::endl;
+			Person p;
+			p.active = true;
+			p.color[0] = rand() % 255;
+			p.color[1] = rand() % 255;
+			p.color[2] = rand() % 255;
+
+			p.id = persons.size();
+			//p.descriptor = desc;
+			p.hist = hist;
+			p.det = separate[i];
+			persons.push_back(p);
+		}
+		else //if (false)  //porovnani
+		{
+
+			//std::cout << "porovnani" << i << std::endl;
+
+			double maxS = 0.0;
+			size_t minIndex = persons.size();
+			for (uint32 k = 0; k < persons.size(); ++k) {
+				if (!persons[k].active){
+					double score = compareHist(hist, persons[k].hist, COMPARE_METHOD);
+
+					if (score > maxS){
+						maxS = score;
+						minIndex = k;
+					}
+				}
+			}
+			//std::cout << "score " << maxS << std::endl;
+			if ((maxS > MIN_SCORE) && (minIndex < persons.size())){
+				persons[minIndex].active = true;
+				persons[minIndex].hist = hist;
+				persons[minIndex].det = separate[i];
+				//nalezeno = true;
+			}
+			else {
+				//std::cout << "Nenalezeno " << i << std::endl;
+				Person p;
+				p.active = true;
+				p.color[0] = rand() % 255;
+				p.color[1] = rand() % 255;
+				p.color[2] = rand() % 255;
+
+				p.id = persons.size();
+				//p.descriptor = desc;
+				p.hist = hist;
+				p.det = separate[i];
+				persons.push_back(p);
+			}
+		}
 	}
-	
+
+	for (uint32 i = 0; i < persons.size(); ++i) {
+#ifdef DEBUG
+		std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
+#endif
+		if (persons[i].active){
+			//zapis do souboru a vykresleni
+			if (output->is_open())//pokud zadam output file
+			{
+				//        id osoby               stred pozice (x)                                         y                         
+				*output << i << ";" << persons[i].det.x + persons[i].det.width / 2 << ";" << persons[i].det.y + persons[i].det.height / 2 << std::endl;
+			}
+			cv::rectangle(*image, cvPoint(persons[i].det.x, persons[i].det.y), cvPoint(persons[i].det.x + persons[i].det.width, persons[i].det.y + persons[i].det.height), CV_RGB(persons[i].color[0], persons[i].color[1], persons[i].color[2]), 1);
+			persons[i].active = false;
+		}
+	}
+	if (output->is_open())//pokud zadam output file
+	{
+		//konec snimku  
+		*output << "------end of frame-------" << std::endl;
+	}
+
+
+#else
+	for (uint32 i = 0; i < hostDetectionCount; ++i) {
+#ifdef DEBUG
+		std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
+#endif
+
+		cv::rectangle(*image, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(0, 255, 0), 1);
+	}
+#endif	
 	// ******** FREE HOST MEMORY *********
 	free(hostImageData);
 
@@ -399,87 +586,106 @@ bool runDetector(cv::Mat* image)
 	return true;
 }
 
-bool process(std::string filename, Filetypes mode) {
-	
-	cv::Mat image;
+bool process(std::string filename, Filetypes mode, std::string outputFilename) {
 
+	cv::Mat image;
+	std::ofstream output;
+	if (!outputFilename.empty()){
+		output.open(outputFilename, std::ios::out);
+		if (!output.is_open())
+		{
+			std::cerr << "Could not open output file (filename: " << outputFilename << ")" << std::endl;
+		}
+	
+	}
 	switch (mode)
 	{
-		case INPUT_IMAGE:
+	case INPUT_IMAGE:
+	{
+		image = cv::imread(filename.c_str(), CV_LOAD_IMAGE_COLOR);
+
+		if (!image.data)
+			std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (filename: " << filename << ")" << std::endl;
+
+		runDetector(&image, &output);
+
+		if (VISUAL_OUTPUT)
 		{
-			image = cv::imread(filename.c_str(), CV_LOAD_IMAGE_COLOR);
+			cv::imshow(LIBNAME, image);
+			cv::waitKey(WAIT_DELAY);
+		}
 
-			if (!image.data)			
-				std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (filename: " << filename << ")" << std::endl;
+		break;
+	}
+	case INPUT_DATASET:
+	{
+		std::ifstream in;
+		in.open(filename);
+		std::string file;
+		while (!in.eof())
+		{
+			std::getline(in, file);
+			image = cv::imread(file.c_str(), CV_LOAD_IMAGE_COLOR);
 
-			runDetector(&image);
+			if (!image.data)
+			{
+				std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (filename: " << file.c_str() << ")" << std::endl;
+				continue;
+			}
+
+			runDetector(&image, &output);
 
 			if (VISUAL_OUTPUT)
 			{
 				cv::imshow(LIBNAME, image);
 				cv::waitKey(WAIT_DELAY);
 			}
-
-			break;
 		}
-		case INPUT_DATASET:
-		{
-			std::ifstream in;
-			in.open(filename);
-			std::string file;
-			while (!in.eof())
-			{
-				std::getline(in, file);
-				image = cv::imread(filename.c_str(), CV_LOAD_IMAGE_COLOR);
-
-				if (!image.data)
-				{
-					std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (filename: " << filename << ")" << std::endl;
-					continue;
-				}
-
-				runDetector(&image);
-
-				if (VISUAL_OUTPUT)
-				{
-					cv::imshow(LIBNAME, image);
-					cv::waitKey(WAIT_DELAY);
-				}
-			}
-			break;
-		}
-		case INPUT_VIDEO:
-		{
-			cv::VideoCapture video;
-
-			video.open(filename);			
-			while (true) {
-				video >> image;
-
-				if (image.empty())
-					break;
-
-				runDetector(&image);
-
-				if (VISUAL_OUTPUT)
-				{
-					cv::imshow(LIBNAME, image);
-					cv::waitKey(WAIT_DELAY);
-				}
-			}
-			video.release();
-			break;		
-		}
-		default:
-			return false;			
+		break;
 	}
+	case INPUT_VIDEO:
+	{
+		cv::VideoCapture video;
+
+		video.open(filename);
+		while (true) {
+			video >> image;
+
+			if (image.empty())
+				break;
+
+			runDetector(&image, &output);
+
+			if (VISUAL_OUTPUT)
+			{
+				cv::imshow(LIBNAME, image);
+				cv::waitKey(WAIT_DELAY);
+			}
+		}
+		video.release();
+		break;
+	}
+	default:
+		return false;
+	}
+	if (output.is_open())//pokud zadam output file
+	{
+		output << "List of faces in video/dataset: " << std::endl;
+		for (uint32 i = 0; i < persons.size(); i++){
+			output << i << ";(" << (int)persons[i].color[0] << "," << (int)persons[i].color[1] << "," << (int)persons[i].color[2] << ")" << std::endl;
+			//fprintf(output, "%d; (%d,%d,%d)\n", i, persons[i].color[0], persons[i].color[1], persons[i].color[2]);
+		}
+		output.close();
+	}
+
 
 	return true;
 }
 
 int main(int argc, char** argv)
 {
-	std::string inputFilename;	
+	std::string inputFilename;
+	std::string outputFilename;
 	Filetypes mode;
 	for (int i = 1; i < argc; ++i)
 	{
@@ -487,23 +693,27 @@ int main(int argc, char** argv)
 			mode = INPUT_IMAGE;
 			inputFilename = argv[++i];
 		}
-		if (std::string(argv[i]) == "-di" && i + 1 < argc) {
-			mode = INPUT_DATASET;			
+		else if (std::string(argv[i]) == "-di" && i + 1 < argc) {
+			mode = INPUT_DATASET;
 			inputFilename = argv[++i];
 		}
-		if (std::string(argv[i]) == "-iv" && i + 1 < argc) {
+		else if (std::string(argv[i]) == "-iv" && i + 1 < argc) {
 			mode = INPUT_VIDEO;
 			inputFilename = argv[++i];
 		}
+		else if (std::string(argv[i]) == "-ot" && i + 1 < argc) {
+
+			outputFilename = argv[++i];
+		}
 		else {
-			std::cerr << "Usage: " << argv[0] << " -ii [input file] or -di [dataset] or -iv [input video]" << std::endl;
+			std::cerr << "Usage: " << argv[0] << " -ii [input file] or -di [dataset] or -iv [input video] and -ot [output track info]" << std::endl;
 			return EXIT_FAILURE;
 		}
 	}
 
-	process(inputFilename, mode);
+	process(inputFilename, mode, outputFilename);
 
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
 
 

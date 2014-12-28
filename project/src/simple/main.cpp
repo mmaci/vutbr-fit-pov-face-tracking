@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 		if (std::string(argv[i]) == "-i" && i + 1 < argc) {
 			inputFilename = argv[++i];
 		}
-		if (std::string(argv[i]) == "-d" && i + 1 < argc) {
+		else if (std::string(argv[i]) == "-d" && i + 1 < argc) {
 			dataset = true;
 			inputFilename = argv[++i];
 		}
@@ -30,6 +30,10 @@ int main(int argc, char** argv) {
 			std::cerr << "Usage: " << argv[0] << " -i [input file]" << std::endl;
 			return EXIT_FAILURE;
 		}
+	}
+	if (inputFilename == ""){
+		std::cerr << "Usage: " << argv[0] << " -i [input file]" << std::endl;
+		return EXIT_FAILURE;
 	}
 
 	std::vector<cv::Mat> images;

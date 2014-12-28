@@ -40,14 +40,22 @@ struct Bounds {
 	float scale;
 };
 
+
 const uint32 MAX_DETECTIONS = 2048;
 const uint32 ALPHA_COUNT = 256;
 const uint32 STAGE_COUNT = 2048;
 const uint8 CLASSIFIER_WIDTH = 26;
 const uint8 CLASSIFIER_HEIGHT = 26;
 
+const uint8 MAX_PERSONS = 100;
+
 #define PYRAMID_IMAGE_COUNT 32
 #define FINAL_THRESHOLD 0.0f
+#define TRACKING 1
+
+const float OVERLAY = 0.5f;
+const int8 COMPARE_METHOD = CV_COMP_CORREL;
+const double MIN_SCORE = 0.90;
 
 const bool VISUAL_OUTPUT = true;
 const uint32 WAIT_DELAY = 1;
