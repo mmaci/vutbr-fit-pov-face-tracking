@@ -47,8 +47,6 @@ const uint32 STAGE_COUNT = 2048;
 const uint8 CLASSIFIER_WIDTH = 26;
 const uint8 CLASSIFIER_HEIGHT = 26;
 
-const uint8 MAX_PERSONS = 100;
-
 
 enum Options
 {
@@ -73,11 +71,10 @@ enum Options
 #define FINAL_THRESHOLD 10.0f
 
 const float OVERLAY = 0.5f;
-const int8 COMPARE_METHOD = CV_COMP_CORREL;
-const double MIN_SCORE = 0.75;
+const double MAX_SCORE = 0.6;
 
 const bool VISUAL_OUTPUT = true;
-const uint32 WAIT_DELAY = 1;
+const uint32 WAIT_DELAY = 250;
 
 enum Filetypes {
 	INPUT_IMAGE = 1,
