@@ -49,13 +49,32 @@ const uint8 CLASSIFIER_HEIGHT = 26;
 
 const uint8 MAX_PERSONS = 100;
 
+
+enum Options
+{
+	/** @brief no parameters */
+	OPT_NONE =			0x00000000,	
+	/** @brief timer enabled */
+	OPT_TIMER =			0x00000001,
+	/** @brief display result  */
+	OPT_VISUAL_OUTPUT =	0x00000002,
+	/** @brief detailed console output */
+	OPT_VERBOSE =		0x00000004,
+	/** @brief tracking enabled  */
+	OPT_TRACKING =		0x00000008,
+	/** @brief output detected faces */
+	OPT_OUTPUT_FACES =	0x00000010,
+	/** @brief all options enabled */	
+	OPT_ALL	=			0xFFFFFFFF,
+};
+
+
 #define PYRAMID_IMAGE_COUNT 32
-#define FINAL_THRESHOLD 0.0f
-#define TRACKING 1
+#define FINAL_THRESHOLD 10.0f
 
 const float OVERLAY = 0.5f;
 const int8 COMPARE_METHOD = CV_COMP_CORREL;
-const double MIN_SCORE = 0.90;
+const double MIN_SCORE = 0.75;
 
 const bool VISUAL_OUTPUT = true;
 const uint32 WAIT_DELAY = 1;

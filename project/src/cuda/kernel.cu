@@ -51,10 +51,13 @@ texture<float> textureAlphas;
 
 /// tracking
 std::vector<Person> persons;
+std::vector<Person> uniquePersons;
 //Person *persons[MAX_PERSONS];
 //uint8 personsCount = 0;
+uint32 param = OPT_ALL;
 
-__global__ void pyramidImageKernel(uint8* imageData, Bounds* bounds) {
+__global__ void pyramidImageKernel(uint8* imageData, Bounds* bounds)
+{
 	buildPyramid(imageData, 320, 240, 48, 48, bounds, 8, 4);
 }
 
@@ -244,13 +247,19 @@ cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* de
 	dim3 grid(32, 128);
 	dim3 block(32, 32);
 
-	cudaEventRecord(start_pyramid);
-	pyramidImageKernel << <grid, block >> > (imageData, bounds);
-	cudaEventRecord(stop_pyramid);
-	cudaEventSynchronize(stop_pyramid);
-	cudaEventElapsedTime(&pyramid_time, start_pyramid, stop_pyramid);
+	if (param & OPT_TIMER)
+		cudaEventRecord(start_pyramid);
 
-	printf("Time for the pyramidImageKernel: %f ms\n", pyramid_time);
+	pyramidImageKernel << <grid, block >> > (imageData, bounds);
+
+	if (param & OPT_TIMER)
+	{
+		cudaEventRecord(stop_pyramid);
+		cudaEventSynchronize(stop_pyramid);
+		cudaEventElapsedTime(&pyramid_time, start_pyramid, stop_pyramid);
+		printf("PyramidKernel time: %f ms\n", pyramid_time);
+	}
+
 	cudaThreadSynchronize();
 
 	// bind created pyramid to texture memory
@@ -266,14 +275,11 @@ cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* de
 	cudaEventSynchronize(stop_detection);
 	cudaEventElapsedTime(&detection_time, start_detection, stop_detection);
 
-	printf("Time for the detectionKernel1: %f ms\n", detection_time);
-	printf("Total time: %f ms \n", pyramid_time + detection_time);
-
-	//detectionKernel2 <<<grid, block>>>(imageData, detections, detectionCount, alphas);
-
-	//detectionKernel3 <<<grid, block>>>(imageData, detections, detectionCount, alphas);
-
-	//detectionKernel4 <<<grid, block>>>(imageData, detections, detectionCount, alphas);
+	if (param & OPT_TIMER)
+	{
+		printf("DetectionKernel time: %f ms\n", detection_time);
+		printf("Total time: %f ms \n", pyramid_time + detection_time);
+	}	
 
 	cudaStatus = cudaGetLastError();
 	if (cudaStatus != cudaSuccess) {
@@ -339,12 +345,39 @@ void separateDetections(Detection *detections, uint32 count, std::vector<Detecti
 	}
 }
 
+cv::Mat getCroppedImage(cv::Mat* origImage, cv::Rect roi)
+{
+	cv::Mat tmpImage(*origImage);
+	cv::Mat imageRoi = tmpImage(roi);
+
+	return imageRoi;
+}
+
+bool searchForSimiliarFace(cv::MatND* histogram, std::vector<Person>* persons)
+{	
+	double maxS = 0.0;
+	size_t minIndex = persons->size();
+	uint32 k = 0;
+	for (std::vector<Person>::iterator it = persons->begin(); it != persons->end(); ++it, ++k)
+	{
+		Person person = *it;						
+		double score = compareHist(*histogram, person.hist, COMPARE_METHOD);
+		if (score > maxS)
+		{
+			maxS = score;
+			minIndex = k;
+		}		
+	}
+
+	return (maxS > MIN_SCORE) && (minIndex < persons->size());	
+}
+
 bool runDetector(cv::Mat* image, std::ofstream *output)
 {
 	cv::Mat image_bw;
 
 	// TODO: do b&w conversion on GPU
-	cvtColor(*image, image_bw, CV_RGB2GRAY);
+	cvtColor(*image, image_bw, CV_BGR2GRAY);
 
 	// TODO: rewrite this
 	const size_t ORIG_IMAGE_SIZE = image_bw.cols * image_bw.rows * sizeof(uint8);
@@ -386,18 +419,17 @@ bool runDetector(cv::Mat* image, std::ofstream *output)
 	cudaMalloc(&devAlphaBuffer, STAGE_COUNT * ALPHA_COUNT * sizeof(float));
 	cudaMemcpy(devAlphaBuffer, alphas, STAGE_COUNT * ALPHA_COUNT * sizeof(float), cudaMemcpyHostToDevice);
 
-
 	cudaMalloc(&devImageData, PYRAMID_IMAGE_SIZE * sizeof(uint8));
 	cudaMalloc(&devOriginalImage, ORIG_IMAGE_SIZE * sizeof(uint8));
-	cudaMalloc((void**)&devDetectionCount, sizeof(uint32));
-	cudaMalloc((void**)&devDetections, MAX_DETECTIONS * sizeof(Detection));
-	cudaMalloc((void**)&devBounds, PYRAMID_IMAGE_COUNT * sizeof(Bounds));
-
+	cudaMalloc(&devDetectionCount, sizeof(uint32));
+	cudaMalloc(&devDetections, MAX_DETECTIONS * sizeof(Detection));
+	cudaMalloc(&devBounds, PYRAMID_IMAGE_COUNT * sizeof(Bounds));
 
 	uint8* clean = (uint8*)malloc(PYRAMID_IMAGE_SIZE * sizeof(uint8));
 	memset(clean, 0, PYRAMID_IMAGE_SIZE * sizeof(uint8));
-
 	cudaMemcpy(devImageData, clean, PYRAMID_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
+	free(clean);
+
 	cudaMemcpy(devImageData, image_bw.data, ORIG_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
 	cudaMemcpy(devOriginalImage, image_bw.data, ORIG_IMAGE_SIZE * sizeof(uint8), cudaMemcpyHostToDevice);
 	cudaMemcpy(devDetectionCount, &hostDetectionCount, sizeof(uint32), cudaMemcpyHostToDevice);
@@ -425,149 +457,187 @@ bool runDetector(cv::Mat* image, std::ofstream *output)
 	cudaMemcpy(hostImageData, devImageData, sizeof(uint8) * PYRAMID_IMAGE_SIZE, cudaMemcpyDeviceToHost);
 
 	// ********* FREE CUDA MEMORY *********
-	cudaFree(devDetectionCount);
-	cudaFree(devImageData);
-	cudaFree(devOriginalImage);
 	cudaUnbindTexture(textureOriginalImage);
 	cudaUnbindTexture(textureAlphas);
+		
+	cudaFree(devImageData);
+	cudaFree(devOriginalImage);	
 	cudaFree(devDetections);
+	cudaFree(devDetectionCount);
 	cudaFree(devAlphaBuffer);
+	cudaFree(devBounds);
 
-	// ********* SHOW RESULTS *********
+	// ********* SHOW RESULTS *********	
 
-	// pyramid image
-	cv::Mat pyramidImage(cv::Size(PYRAMID_IMAGE_WIDTH, PYRAMID_IMAGE_HEIGHT), CV_8U);
-	pyramidImage.data = hostImageData;
+	if (param & OPT_VERBOSE)
+		std::cout << "Detection count: " << hostDetectionCount << std::endl;
 
-#ifdef DEBUG
-	std::cout << "Detection count: " << hostDetectionCount << std::endl;
-#endif
 
-#ifdef TRACKING
+	if (param & OPT_TRACKING)
+	{
+		std::vector<Detection> separate;
+		separateDetections(hostDetections, hostDetectionCount, &separate);
 
-	std::vector<Detection> separate;
-	separateDetections(hostDetections, hostDetectionCount, &separate);
-
-	for (uint32 i = 0; i < separate.size(); i++){
-
-		if (separate[i].x + separate[i].width >= (uint32)image->cols){
-			separate[i].width = image->cols - separate[i].x;
-		}
-		if (separate[i].y + separate[i].height >= (uint32)image->rows){
-			separate[i].height = image->rows - separate[i].y;
-		}
-		//std::cout << "pred obrazkem " << i << " x: " << separate[i].x << " y: " << separate[i].y << " wi: " << separate[i].width << " he: " << separate[i].height << " cols " << image->cols << " rows " << image->rows << std::endl;
-
-		cv::Mat faceImg = image->clone();
-
-		faceImg = cv::Mat(faceImg, (cv::Rect(separate[i].x, separate[i].y, separate[i].width, separate[i].height)));//vyber ROI
-		faceImg.copyTo(faceImg); //zkopirovani jen ROI
-
-		cvtColor(faceImg, faceImg, cv::COLOR_RGB2HSV);
-		int h_bins = 50; int s_bins = 60;
-		int histSize[] = { h_bins, s_bins };
-
-		// hue varies from 0 to 179, saturation from 0 to 255
-		float h_ranges[] = { 0, 180 };
-		float s_ranges[] = { 0, 256 };
-
-		const float* ranges[] = { h_ranges, s_ranges };
-
-		// Use the o-th and 1-st channels
-		int channels[] = { 0, 1 };
-		cv::MatND hist;
-
-		cv::calcHist(&faceImg, 1, channels, cv::Mat(), hist, 2, histSize, ranges, true, false);
-		cv::normalize(hist, hist, 0, 1, cv::NORM_MINMAX, -1, cv::Mat());
-
-		//desc.convertTo(desc, CV_32F);
-		if (persons.size() == 0){ //
-			//create new one and random color
-			//std::cout << "novy " << i << std::endl;
-			Person p;
-			p.active = true;
-			p.color[0] = rand() % 255;
-			p.color[1] = rand() % 255;
-			p.color[2] = rand() % 255;
-
-			p.id = persons.size();
-			//p.descriptor = desc;
-			p.hist = hist;
-			p.det = separate[i];
-			persons.push_back(p);
-		}
-		else //if (false)  //porovnani
+		for (uint32 i = 0; i < separate.size(); i++)
 		{
 
-			//std::cout << "porovnani" << i << std::endl;
+			if (separate[i].x + separate[i].width >= (uint32)image->cols){
+				separate[i].width = image->cols - separate[i].x;
+			}
 
-			double maxS = 0.0;
-			size_t minIndex = persons.size();
-			for (uint32 k = 0; k < persons.size(); ++k) {
-				if (!persons[k].active){
-					double score = compareHist(hist, persons[k].hist, COMPARE_METHOD);
+			if (separate[i].y + separate[i].height >= (uint32)image->rows){
+				separate[i].height = image->rows - separate[i].y;
+			}
+			//std::cout << "pred obrazkem " << i << " x: " << separate[i].x << " y: " << separate[i].y << " wi: " << separate[i].width << " he: " << separate[i].height << " cols " << image->cols << " rows " << image->rows << std::endl;
 
-					if (score > maxS){
-						maxS = score;
-						minIndex = k;
+			cv::Mat faceImg = image->clone();
+
+			faceImg = cv::Mat(faceImg, (cv::Rect(separate[i].x, separate[i].y, separate[i].width, separate[i].height)));//vyber ROI
+			faceImg.copyTo(faceImg); //zkopirovani jen ROI
+
+			cvtColor(faceImg, faceImg, cv::COLOR_BGR2HSV);
+			int h_bins = 50; int s_bins = 60;
+			int histSize[] = { h_bins, s_bins };
+
+			// hue varies from 0 to 179, saturation from 0 to 255
+			float h_ranges[] = { 0, 180 };
+			float s_ranges[] = { 0, 256 };
+
+			const float* ranges[] = { h_ranges, s_ranges };
+
+			// Use the o-th and 1-st channels
+			int channels[] = { 0, 1 };
+			cv::MatND hist;
+
+			cv::calcHist(&faceImg, 1, channels, cv::Mat(), hist, 2, histSize, ranges, true, false);
+			cv::normalize(hist, hist, 0, 1, cv::NORM_MINMAX, -1, cv::Mat());
+
+			// TODO: remove this
+			// temporary fix for some weird asymetrical detections
+			// just ignore these detections
+			if ((separate[i].width != 0 || separate[i].height != 0) && separate[i].width == separate[i].height)
+			{
+				//desc.convertTo(desc, CV_32F);
+				if (persons.size() == 0)
+				{
+					//create new one and random color
+					//std::cout << "novy " << i << std::endl;
+					Person p;
+					p.active = true;
+					p.color[0] = rand() % 255;
+					p.color[1] = rand() % 255;
+					p.color[2] = rand() % 255;
+
+					p.id = persons.size();
+					//p.descriptor = desc;
+					p.hist = hist;
+					p.det = separate[i];
+					persons.push_back(p);
+					uniquePersons.push_back(p);
+
+					if (param & OPT_OUTPUT_FACES)
+					{
+						cv::Mat imageROI = getCroppedImage(image, cv::Rect(p.det.x, p.det.y, p.det.width, p.det.height));
+
+						char filename[256];
+						sprintf(filename, "%i.jpg", p.id);
+						cv::imwrite(filename, imageROI);
 					}
 				}
-			}
-			//std::cout << "score " << maxS << std::endl;
-			if ((maxS > MIN_SCORE) && (minIndex < persons.size())){
-				persons[minIndex].active = true;
-				persons[minIndex].hist = hist;
-				persons[minIndex].det = separate[i];
-				//nalezeno = true;
-			}
-			else {
-				//std::cout << "Nenalezeno " << i << std::endl;
-				Person p;
-				p.active = true;
-				p.color[0] = rand() % 255;
-				p.color[1] = rand() % 255;
-				p.color[2] = rand() % 255;
+				else
+				{
+					double maxS = 0.0;
+					size_t minIndex = persons.size();
+					for (uint32 k = 0; k < persons.size(); ++k) {
+						if (!persons[k].active){
+							double score = compareHist(hist, persons[k].hist, COMPARE_METHOD);
 
-				p.id = persons.size();
-				//p.descriptor = desc;
-				p.hist = hist;
-				p.det = separate[i];
-				persons.push_back(p);
+							if (score > maxS){
+								maxS = score;
+								minIndex = k;
+							}
+						}
+					}
+
+					if (param & OPT_OUTPUT_FACES)
+					{
+						if (!searchForSimiliarFace(&hist, &uniquePersons))
+						{
+							Person p;
+							p.id = uniquePersons.size();							
+							p.hist = hist;
+							p.det = separate[i];
+
+							uniquePersons.push_back(p);
+
+							cv::Mat imageROI = getCroppedImage(image, cv::Rect(p.det.x, p.det.y, p.det.width, p.det.height));
+
+							char filename[256];
+							sprintf(filename, "%i.jpg", p.id);
+							cv::imwrite(filename, imageROI);
+						}
+					}
+
+					//std::cout << "score " << maxS << std::endl;
+					if ((maxS > MIN_SCORE) && (minIndex < persons.size())){
+						persons[minIndex].active = true;
+						persons[minIndex].hist = hist;
+						persons[minIndex].det = separate[i];
+						//nalezeno = true;
+					}
+					else {
+						//std::cout << "Nenalezeno " << i << std::endl;
+						Person p;
+						p.active = true;
+						p.color[0] = rand() % 255;
+						p.color[1] = rand() % 255;
+						p.color[2] = rand() % 255;
+
+						p.id = persons.size();
+						//p.descriptor = desc;
+						p.hist = hist;
+						p.det = separate[i];
+						persons.push_back(p);					
+					}					
+				}
 			}
 		}
-	}
 
-	for (uint32 i = 0; i < persons.size(); ++i) {
-#ifdef DEBUG
-		std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
-#endif
-		if (persons[i].active){
-			//zapis do souboru a vykresleni
-			if (output->is_open())//pokud zadam output file
+		for (uint32 i = 0; i < persons.size(); ++i)
+		{
+			if (param & OPT_VERBOSE)
+				std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
+
+			if (persons[i].active)
 			{
-				//        id osoby               stred pozice (x)                                         y                         
-				*output << i << ";" << persons[i].det.x + persons[i].det.width / 2 << ";" << persons[i].det.y + persons[i].det.height / 2 << std::endl;
+				//zapis do souboru a vykresleni
+				if (output->is_open())//pokud zadam output file
+				{
+					//        id osoby               stred pozice (x)                                         y                         
+					*output << i << ";" << persons[i].det.x + persons[i].det.width / 2 << ";" << persons[i].det.y + persons[i].det.height / 2 << std::endl;
+				}
+				cv::rectangle(*image, cvPoint(persons[i].det.x, persons[i].det.y), cvPoint(persons[i].det.x + persons[i].det.width, persons[i].det.y + persons[i].det.height), CV_RGB(persons[i].color[0], persons[i].color[1], persons[i].color[2]), 1);
+				persons[i].active = false;
 			}
-			cv::rectangle(*image, cvPoint(persons[i].det.x, persons[i].det.y), cvPoint(persons[i].det.x + persons[i].det.width, persons[i].det.y + persons[i].det.height), CV_RGB(persons[i].color[0], persons[i].color[1], persons[i].color[2]), 1);
-			persons[i].active = false;
+		}
+		if (output->is_open())//pokud zadam output file
+		{
+			//konec snimku  
+			*output << "------end of frame-------" << std::endl;
+		}
+
+	}
+	else
+	{
+		for (uint32 i = 0; i < hostDetectionCount; ++i)
+		{
+			if (param & OPT_VERBOSE)
+				std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
+
+			if (param & OPT_VISUAL_OUTPUT)
+				cv::rectangle(*image, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(0, 255, 0), 1);
 		}
 	}
-	if (output->is_open())//pokud zadam output file
-	{
-		//konec snimku  
-		*output << "------end of frame-------" << std::endl;
-	}
-
-
-#else
-	for (uint32 i = 0; i < hostDetectionCount; ++i) {
-#ifdef DEBUG
-		std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
-#endif
-
-		cv::rectangle(*image, cvPoint(hostDetections[i].x, hostDetections[i].y), cvPoint(hostDetections[i].x + hostDetections[i].width, hostDetections[i].y + hostDetections[i].height), CV_RGB(0, 255, 0), 1);
-	}
-#endif	
 	// ******** FREE HOST MEMORY *********
 	free(hostImageData);
 
@@ -586,30 +656,32 @@ bool runDetector(cv::Mat* image, std::ofstream *output)
 	return true;
 }
 
-bool process(std::string filename, Filetypes mode, std::string outputFilename) {
-
-	cv::Mat image;
+bool process(std::string inFilename, Filetypes inFileType, std::string outFilename) {
+	
 	std::ofstream output;
-	if (!outputFilename.empty()){
-		output.open(outputFilename, std::ios::out);
+	if (!outFilename.empty())
+	{		
+		output.open(outFilename, std::ios::out);
 		if (!output.is_open())
 		{
-			std::cerr << "Could not open output file (filename: " << outputFilename << ")" << std::endl;
+			std::cerr << "Could not open output file (filename: " << outFilename << ")" << std::endl;
+			return false;
 		}
-	
 	}
-	switch (mode)
+
+	cv::Mat image;
+	switch (inFileType)
 	{
 	case INPUT_IMAGE:
 	{
-		image = cv::imread(filename.c_str(), CV_LOAD_IMAGE_COLOR);
+		image = cv::imread(inFilename.c_str(), CV_LOAD_IMAGE_COLOR);
 
 		if (!image.data)
-			std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (filename: " << filename << ")" << std::endl;
+			std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (filename: " << inFilename << ")" << std::endl;
 
 		runDetector(&image, &output);
 
-		if (VISUAL_OUTPUT)
+		if (param & OPT_VISUAL_OUTPUT)
 		{
 			cv::imshow(LIBNAME, image);
 			cv::waitKey(WAIT_DELAY);
@@ -620,7 +692,7 @@ bool process(std::string filename, Filetypes mode, std::string outputFilename) {
 	case INPUT_DATASET:
 	{
 		std::ifstream in;
-		in.open(filename);
+		in.open(inFilename);
 		std::string file;
 		while (!in.eof())
 		{
@@ -629,13 +701,13 @@ bool process(std::string filename, Filetypes mode, std::string outputFilename) {
 
 			if (!image.data)
 			{
-				std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (filename: " << file.c_str() << ")" << std::endl;
+				std::cerr << "[" << LIBNAME << "]: " << "Could not open or find the image (inFilename: " << file.c_str() << ")" << std::endl;
 				continue;
 			}
 
 			runDetector(&image, &output);
 
-			if (VISUAL_OUTPUT)
+			if (param & OPT_VISUAL_OUTPUT)
 			{
 				cv::imshow(LIBNAME, image);
 				cv::waitKey(WAIT_DELAY);
@@ -647,7 +719,7 @@ bool process(std::string filename, Filetypes mode, std::string outputFilename) {
 	{
 		cv::VideoCapture video;
 
-		video.open(filename);
+		video.open(inFilename);
 		while (true) {
 			video >> image;
 
@@ -656,7 +728,7 @@ bool process(std::string filename, Filetypes mode, std::string outputFilename) {
 
 			runDetector(&image, &output);
 
-			if (VISUAL_OUTPUT)
+			if (param & OPT_VISUAL_OUTPUT)
 			{
 				cv::imshow(LIBNAME, image);
 				cv::waitKey(WAIT_DELAY);
@@ -668,16 +740,15 @@ bool process(std::string filename, Filetypes mode, std::string outputFilename) {
 	default:
 		return false;
 	}
-	if (output.is_open())//pokud zadam output file
+
+	if (!output.is_open())
 	{
 		output << "List of faces in video/dataset: " << std::endl;
-		for (uint32 i = 0; i < persons.size(); i++){
-			output << i << ";(" << (int)persons[i].color[0] << "," << (int)persons[i].color[1] << "," << (int)persons[i].color[2] << ")" << std::endl;
-			//fprintf(output, "%d; (%d,%d,%d)\n", i, persons[i].color[0], persons[i].color[1], persons[i].color[2]);
-		}
+		for (uint32 i = 0; i < persons.size(); i++)
+			output << i << ";(" << (int)persons[i].color[0] << "," << (int)persons[i].color[1] << "," << (int)persons[i].color[2] << ")" << std::endl;		
+		
 		output.close();
-	}
-
+	}	
 
 	return true;
 }
