@@ -353,23 +353,19 @@ cv::Mat getCroppedImage(cv::Mat* origImage, cv::Rect roi)
 	return imageRoi;
 }
 
-bool searchForSimiliarFace(cv::MatND* histogram, std::vector<Person>* persons)
+bool searchForSimiliarFace(cv::MatND* histogram, std::vector<Person>* persons, double& response)
 {	
-	double maxS = 0.0;
+	response = 0.0;
 	size_t minIndex = persons->size();
-	uint32 k = 0;
-	for (std::vector<Person>::iterator it = persons->begin(); it != persons->end(); ++it, ++k)
+	for (std::vector<Person>::iterator it = persons->begin(); it != persons->end(); ++it)
 	{
 		Person person = *it;						
 		double score = compareHist(*histogram, person.hist, COMPARE_METHOD);
-		if (score > maxS)
-		{
-			maxS = score;
-			minIndex = k;
-		}		
+		if (score > response)
+			response = score;
 	}
 
-	return (maxS > MIN_SCORE) && (minIndex < persons->size());	
+	return (response > MIN_SCORE);
 }
 
 bool runDetector(cv::Mat* image, std::ofstream *output)
@@ -561,7 +557,8 @@ bool runDetector(cv::Mat* image, std::ofstream *output)
 
 					if (param & OPT_OUTPUT_FACES)
 					{
-						if (!searchForSimiliarFace(&hist, &uniquePersons))
+						double response;
+						if (!searchForSimiliarFace(&hist, &uniquePersons, response))
 						{
 							Person p;
 							p.id = uniquePersons.size();							
@@ -573,7 +570,7 @@ bool runDetector(cv::Mat* image, std::ofstream *output)
 							cv::Mat imageROI = getCroppedImage(image, cv::Rect(p.det.x, p.det.y, p.det.width, p.det.height));
 
 							char filename[256];
-							sprintf(filename, "%i.jpg", p.id);
+							sprintf(filename, "%i[%f].jpg", p.id, response);
 							cv::imwrite(filename, imageROI);
 						}
 					}
