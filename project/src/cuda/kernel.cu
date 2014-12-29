@@ -26,6 +26,7 @@ struct Person {
 	uint8 color[3];
 	size_t id;
 	Detection det;
+	CvPoint lastPoint;
 };
 
 /// wrapper to call kernels
@@ -51,7 +52,6 @@ texture<float> textureAlphas;
 
 /// tracking
 std::vector<Person> persons;
-std::vector<Person> uniquePersons;
 //Person *persons[MAX_PERSONS];
 //uint8 personsCount = 0;
 uint32 param = OPT_ALL;
@@ -345,27 +345,65 @@ void separateDetections(Detection *detections, uint32 count, std::vector<Detecti
 	}
 }
 
-cv::Mat getCroppedImage(cv::Mat* origImage, cv::Rect roi)
-{
-	cv::Mat tmpImage(*origImage);
-	cv::Mat imageRoi = tmpImage(roi);
-
-	return imageRoi;
+double getScore(cv::MatND *hist, uint32 personID, Detection det, uint32 cols, uint32 rows){
+	double score = compareHist(*hist, persons[personID].hist, CV_COMP_BHATTACHARYYA);
+	//score += (1 - compareHist(hist, persons[k].hist, CV_COMP_CORREL));
+	uint32 x1, x2, y1, y2;
+	x1 = persons[personID].lastPoint.x;
+	x2 = det.x + det.width / 2;
+	y1 = persons[personID].lastPoint.y;
+	y2 = det.y + det.height / 2;
+	//std::cout << x1 << " " << y1 << " ; " << x2 << " " << y2 << "(x-x)^2=" << pow((int32)(x1 - x2), 2) << "(y-y)^2=" << pow((int32)(y1 - y2), 2) << std::endl;
+	
+	return score + sqrt(pow((int32)(x1 - x2), 2) + pow((int32)(y1 - y2), 2)) / (2 * sqrt(pow(cols, 2) + pow(rows, 2)));  //vzdalenost (hodnoty 0 - 0,5)
 }
 
-bool searchForSimiliarFace(cv::MatND* histogram, std::vector<Person>* persons, double& response)
-{	
-	response = 0.0;
-	size_t minIndex = persons->size();
-	for (std::vector<Person>::iterator it = persons->begin(); it != persons->end(); ++it)
+void addNewPerson(cv::Mat *image, cv::MatND *hist, Detection det)
+{
+	Person p;
+	p.active = true;
+	p.color[0] = rand() % 255;
+	p.color[1] = rand() % 255;
+	p.color[2] = rand() % 255;
+
+	p.id = persons.size();
+	//p.descriptor = desc;
+	p.hist = *hist;
+	p.det = det;
+	persons.push_back(p);
+	if (param & OPT_OUTPUT_FACES)
 	{
-		Person person = *it;						
-		double score = compareHist(*histogram, person.hist, COMPARE_METHOD);
-		if (score > response)
-			response = score;
+		cv::Mat imageROI = cv::Mat(*image, cv::Rect(det.x, det.y, det.width, det.height));
+		char filename[256];
+		sprintf(filename, "face%i.jpg", p.id);
+		cv::imwrite(filename, imageROI);
 	}
 
-	return (response > MIN_SCORE);
+}
+
+void getHistogram(cv::Mat *image, cv::MatND *hist, Detection det){
+	cv::Mat faceImg = image->clone();
+
+	faceImg = cv::Mat(faceImg, (cv::Rect(det.x, det.y, det.width, det.height)));//vyber ROI
+	faceImg.copyTo(faceImg); //zkopirovani jen ROI
+
+	cvtColor(faceImg, faceImg, cv::COLOR_BGR2HSV);
+	int h_bins = 60; int s_bins = 60;// int v_bins = 50;
+	int histSize[] = { h_bins, s_bins };
+
+	// hue varies from 0 to 179, saturation from 0 to 255
+	float h_ranges[] = { 0, 180 };
+	float s_ranges[] = { 0, 256 };
+	//float v_ranges[] = { 0, 256 };
+
+	const float* ranges[] = { h_ranges, s_ranges };
+
+	// Use the o-th and 1-st channels
+	int channels[] = { 0, 1 };
+
+	cv::calcHist(&faceImg, 1, channels, cv::Mat(), *hist, 2, histSize, ranges, true, false);
+	cv::normalize(*hist, *hist, 0, 255, cv::NORM_MINMAX, -1, cv::Mat());
+	
 }
 
 bool runDetector(cv::Mat* image, std::ofstream *output)
@@ -473,110 +511,50 @@ bool runDetector(cv::Mat* image, std::ofstream *output)
 	{
 		std::vector<Detection> separate;
 		separateDetections(hostDetections, hostDetectionCount, &separate);
+		bool emptyPersons = persons.size() == 0;
 
-		for (uint32 i = 0; i < separate.size(); i++)
-		{
-
-			if (separate[i].x + separate[i].width >= (uint32)image->cols){
-				separate[i].width = image->cols - separate[i].x;
-			}
-
-			if (separate[i].y + separate[i].height >= (uint32)image->rows){
-				separate[i].height = image->rows - separate[i].y;
-			}
-			//std::cout << "pred obrazkem " << i << " x: " << separate[i].x << " y: " << separate[i].y << " wi: " << separate[i].width << " he: " << separate[i].height << " cols " << image->cols << " rows " << image->rows << std::endl;
-
-			cv::Mat faceImg = image->clone();
-
-			faceImg = cv::Mat(faceImg, (cv::Rect(separate[i].x, separate[i].y, separate[i].width, separate[i].height)));//vyber ROI
-			faceImg.copyTo(faceImg); //zkopirovani jen ROI
-
-			cvtColor(faceImg, faceImg, cv::COLOR_BGR2HSV);
-			int h_bins = 50; int s_bins = 60;
-			int histSize[] = { h_bins, s_bins };
-
-			// hue varies from 0 to 179, saturation from 0 to 255
-			float h_ranges[] = { 0, 180 };
-			float s_ranges[] = { 0, 256 };
-
-			const float* ranges[] = { h_ranges, s_ranges };
-
-			// Use the o-th and 1-st channels
-			int channels[] = { 0, 1 };
-			cv::MatND hist;
-
-			cv::calcHist(&faceImg, 1, channels, cv::Mat(), hist, 2, histSize, ranges, true, false);
-			cv::normalize(hist, hist, 0, 1, cv::NORM_MINMAX, -1, cv::Mat());
-
+		for (uint32 i = 0; i < separate.size(); i++){
 			// TODO: remove this
 			// temporary fix for some weird asymetrical detections
 			// just ignore these detections
 			if ((separate[i].width != 0 || separate[i].height != 0) && separate[i].width == separate[i].height)
 			{
+				if (separate[i].x + separate[i].width >= (uint32)image->cols){
+					separate[i].width = image->cols - separate[i].x;
+				}
+				if (separate[i].y + separate[i].height >= (uint32)image->rows){
+					separate[i].height = image->rows - separate[i].y;
+				}
+				//std::cout << "pred obrazkem " << i << " x: " << separate[i].x << " y: " << separate[i].y << " wi: " << separate[i].width << " he: " << separate[i].height << " cols " << image->cols << " rows " << image->rows << std::endl;
+				cv::MatND hist;
+				getHistogram(image, &hist, separate[i]);
+
+
+
 				//desc.convertTo(desc, CV_32F);
-				if (persons.size() == 0)
-				{
+				if (emptyPersons){ //prvni snimek s detekci
 					//create new one and random color
 					//std::cout << "novy " << i << std::endl;
-					Person p;
-					p.active = true;
-					p.color[0] = rand() % 255;
-					p.color[1] = rand() % 255;
-					p.color[2] = rand() % 255;
-
-					p.id = persons.size();
-					//p.descriptor = desc;
-					p.hist = hist;
-					p.det = separate[i];
-					persons.push_back(p);
-					uniquePersons.push_back(p);
-
-					if (param & OPT_OUTPUT_FACES)
-					{
-						cv::Mat imageROI = getCroppedImage(image, cv::Rect(p.det.x, p.det.y, p.det.width, p.det.height));
-
-						char filename[256];
-						sprintf(filename, "%i.jpg", p.id);
-						cv::imwrite(filename, imageROI);
-					}
+					addNewPerson(image, &hist, separate[i]);
 				}
-				else
+				else //if (false)  //porovnani
 				{
-					double maxS = 0.0;
+
+					//std::cout << "porovnani" << i << std::endl;
+
+					double minS = 1000.0;
 					size_t minIndex = persons.size();
 					for (uint32 k = 0; k < persons.size(); ++k) {
 						if (!persons[k].active){
-							double score = compareHist(hist, persons[k].hist, COMPARE_METHOD);
-
-							if (score > maxS){
-								maxS = score;
+							double score = getScore(&hist, k, separate[i], image->cols, image->rows);
+							if (score < minS){
+								minS = score;
 								minIndex = k;
 							}
 						}
 					}
-
-					if (param & OPT_OUTPUT_FACES)
-					{
-						double response;
-						if (!searchForSimiliarFace(&hist, &uniquePersons, response))
-						{
-							Person p;
-							p.id = uniquePersons.size();							
-							p.hist = hist;
-							p.det = separate[i];
-
-							uniquePersons.push_back(p);
-
-							cv::Mat imageROI = getCroppedImage(image, cv::Rect(p.det.x, p.det.y, p.det.width, p.det.height));
-
-							char filename[256];
-							sprintf(filename, "%i[%f].jpg", p.id, response);
-							cv::imwrite(filename, imageROI);
-						}
-					}
-
-					//std::cout << "score " << maxS << std::endl;
-					if ((maxS > MIN_SCORE) && (minIndex < persons.size())){
+					//std::cout << "score " << minS << std::endl;
+					if ((minS < MAX_SCORE) && (minIndex < persons.size())){
 						persons[minIndex].active = true;
 						persons[minIndex].hist = hist;
 						persons[minIndex].det = separate[i];
@@ -584,36 +562,26 @@ bool runDetector(cv::Mat* image, std::ofstream *output)
 					}
 					else {
 						//std::cout << "Nenalezeno " << i << std::endl;
-						Person p;
-						p.active = true;
-						p.color[0] = rand() % 255;
-						p.color[1] = rand() % 255;
-						p.color[2] = rand() % 255;
-
-						p.id = persons.size();
-						//p.descriptor = desc;
-						p.hist = hist;
-						p.det = separate[i];
-						persons.push_back(p);					
-					}					
+						addNewPerson(image, &hist, separate[i]);
+					}
 				}
-			}
-		}
-
+			}//if ((separate[i].width != 0 || 
+		}//for (uint32 i = 0; i < separate.size();
 		for (uint32 i = 0; i < persons.size(); ++i)
 		{
 			if (param & OPT_VERBOSE)
-				std::cout << "[" << hostDetections[i].x << "," << hostDetections[i].y << "," << hostDetections[i].width << "," << hostDetections[i].height << "] " << hostDetections[i].response << ", ";
+				std::cout << "[" << persons[i].det.x << "," << persons[i].det.y << "," << persons[i].det.width << "," << persons[i].det.height << "] " << persons[i].det.response << ", ";
 
-			if (persons[i].active)
-			{
+			if (persons[i].active){
 				//zapis do souboru a vykresleni
+				persons[i].lastPoint = cvPoint(persons[i].det.x + persons[i].det.width / 2, persons[i].det.y + persons[i].det.height / 2);
 				if (output->is_open())//pokud zadam output file
 				{
-					//        id osoby               stred pozice (x)                                         y                         
-					*output << i << ";" << persons[i].det.x + persons[i].det.width / 2 << ";" << persons[i].det.y + persons[i].det.height / 2 << std::endl;
+					//        id osoby               stred pozice (x)                     y                                             
+					*output << i << ";" << persons[i].lastPoint.x << ";" << persons[i].lastPoint.y << ";" << persons[i].det.response << std::endl;
 				}
 				cv::rectangle(*image, cvPoint(persons[i].det.x, persons[i].det.y), cvPoint(persons[i].det.x + persons[i].det.width, persons[i].det.y + persons[i].det.height), CV_RGB(persons[i].color[0], persons[i].color[1], persons[i].color[2]), 1);
+
 				persons[i].active = false;
 			}
 		}
@@ -663,6 +631,11 @@ bool process(std::string inFilename, Filetypes inFileType, std::string outFilena
 		{
 			std::cerr << "Could not open output file (filename: " << outFilename << ")" << std::endl;
 			return false;
+		}
+		else
+		{
+			//        id osoby               stred pozice (x)                                         y                         
+			output << "id;pozice x; pozice y; response" << std::endl;
 		}
 	}
 
@@ -738,7 +711,7 @@ bool process(std::string inFilename, Filetypes inFileType, std::string outFilena
 		return false;
 	}
 
-	if (!output.is_open())
+	if (output.is_open())
 	{
 		output << "List of faces in video/dataset: " << std::endl;
 		for (uint32 i = 0; i < persons.size(); i++)
