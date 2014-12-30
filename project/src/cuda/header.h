@@ -74,7 +74,7 @@ const float OVERLAY = 0.5f;
 const double MAX_SCORE = 0.6;
 
 const bool VISUAL_OUTPUT = true;
-const uint32 WAIT_DELAY = 250;
+const uint32 WAIT_DELAY = 100;
 
 enum Filetypes {
 	INPUT_IMAGE = 1,

@@ -231,7 +231,7 @@ __device__ void detect(uint8* imageData, Detection* detections, uint32* detectio
 	}
 }
 
-cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* detectionCount, Bounds* bounds, const size_t pyramidImageSize)
+cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* detectionCount, Bounds* bounds, const DetectorInfo info)
 {
 	cudaEvent_t start_detection, stop_detection, start_pyramid, stop_pyramid;
 	cudaEventCreate(&start_detection);
@@ -264,7 +264,7 @@ cudaError_t runKernelWrapper(uint8* imageData, Detection* detections, uint32* de
 
 	// bind created pyramid to texture memory
 	cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc<uint8>();
-	cudaBindTexture(nullptr, &texturePyramidImage, imageData, &channelDesc, sizeof(uint8) * pyramidImageSize);
+	cudaBindTexture(nullptr, &texturePyramidImage, imageData, &channelDesc, sizeof(uint8) * info.pyramidImageHeight * info.pyramidImageWidth);
 
 	cudaEventRecord(start_detection);
 	detectionKernel1 << <grid, block >> >(imageData, detections, detectionCount, bounds);
@@ -355,11 +355,16 @@ double getScore(cv::MatND *hist, uint32 personID, Detection det, uint32 cols, ui
 	y2 = det.y + det.height / 2;
 	//std::cout << x1 << " " << y1 << " ; " << x2 << " " << y2 << "(x-x)^2=" << pow((int32)(x1 - x2), 2) << "(y-y)^2=" << pow((int32)(y1 - y2), 2) << std::endl;
 	
-	return score + sqrt(pow((int32)(x1 - x2), 2) + pow((int32)(y1 - y2), 2)) / (2 * sqrt(pow(cols, 2) + pow(rows, 2)));  //vzdalenost (hodnoty 0 - 0,5)
+	return score + sqrt(powf((int32)(x1 - x2), 2) + powf((int32)(y1 - y2), 2)) / (2 * sqrt(powf(cols, 2) + powf(rows, 2)));  //vzdalenost (hodnoty 0 - 0,5)
 }
 
 void addNewPerson(cv::Mat *image, cv::MatND *hist, Detection det)
 {
+	// TODO: remove this
+	// temp fix for overlapping detections from other images
+	if (det.width != det.height)
+		return;
+
 	Person p;
 	p.active = true;
 	p.color[0] = rand() % 255;
@@ -481,7 +486,7 @@ bool runDetector(cv::Mat* image, std::ofstream *output)
 		devDetections,
 		devDetectionCount,
 		devBounds,
-		PYRAMID_IMAGE_SIZE
+		hostDetectorInfo[0]
 		);
 
 	// ********* COPY RESULTS FROM GPU *********
