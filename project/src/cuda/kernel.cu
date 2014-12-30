@@ -392,7 +392,7 @@ void getHistogram(cv::Mat *image, cv::MatND *hist, Detection det){
 	int histSize[] = { h_bins, s_bins };
 
 	// hue varies from 0 to 179, saturation from 0 to 255
-	float h_ranges[] = { 0, 180 };
+	float h_ranges[] = { 0, 360 };
 	float s_ranges[] = { 0, 256 };
 	//float v_ranges[] = { 0, 256 };
 
