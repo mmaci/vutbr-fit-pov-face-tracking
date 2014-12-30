@@ -1,0 +1,6836 @@
+id;pozice x; pozice y; response
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;916;116;16.0652
+------end of frame-------
+------end of frame-------
+0;920;116;15.1775
+------end of frame-------
+0;916;116;16.7035
+------end of frame-------
+0;916;120;11.6398
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;920;124;10.1022
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;916;124;25.6197
+------end of frame-------
+0;916;120;31.6084
+------end of frame-------
+0;920;124;23.3698
+------end of frame-------
+0;920;120;35.9
+------end of frame-------
+0;920;120;27.8895
+------end of frame-------
+0;916;120;24.507
+------end of frame-------
+0;916;124;33.0127
+------end of frame-------
+0;912;120;18.4275
+------end of frame-------
+0;908;120;26.2399
+------end of frame-------
+0;904;120;25.2079
+------end of frame-------
+0;904;120;16.6919
+------end of frame-------
+0;900;120;22.0599
+------end of frame-------
+0;892;120;42.786
+------end of frame-------
+0;888;116;50.047
+------end of frame-------
+0;880;120;16.5289
+------end of frame-------
+0;876;120;35.3558
+------end of frame-------
+0;868;120;39.1405
+------end of frame-------
+0;864;120;32.7608
+------end of frame-------
+0;860;116;36.5145
+------end of frame-------
+0;856;120;47.4254
+------end of frame-------
+0;848;116;43.1575
+------end of frame-------
+0;844;120;51.6332
+------end of frame-------
+1;423;327;55.554
+2;140;372;20.8494
+------end of frame-------
+1;423;327;57.3106
+2;140;372;17.7193
+------end of frame-------
+1;423;327;48.3955
+2;140;372;15.3061
+------end of frame-------
+1;423;321;56.0711
+2;140;376;16.3536
+------end of frame-------
+1;422;317;54.0138
+2;137;365;12.0934
+------end of frame-------
+1;422;322;41.0386
+2;140;376;17.0533
+------end of frame-------
+1;423;321;54.3876
+2;140;376;19.6451
+------end of frame-------
+1;422;322;54.0849
+2;137;370;22.035
+------end of frame-------
+1;422;322;56.5262
+2;144;372;17.1558
+------end of frame-------
+1;422;322;50.1223
+2;140;372;20.7137
+------end of frame-------
+1;423;321;51.2748
+2;137;365;19.3102
+------end of frame-------
+1;422;322;54.2923
+2;141;370;17.1569
+------end of frame-------
+1;422;322;64.9424
+2;140;376;19.5701
+------end of frame-------
+1;423;327;51.7303
+2;137;370;26.1287
+------end of frame-------
+1;423;327;59.4239
+2;140;376;29.496
+------end of frame-------
+1;423;327;50.4503
+2;137;370;24.7354
+------end of frame-------
+1;423;327;63.8602
+2;137;370;24.6375
+------end of frame-------
+1;423;327;55.1303
+2;137;374;20.1599
+------end of frame-------
+1;423;327;64.9425
+2;137;370;19.6738
+------end of frame-------
+1;423;327;59.0723
+2;140;376;30.3063
+------end of frame-------
+1;423;327;66.2397
+2;137;370;18.6786
+------end of frame-------
+1;423;327;53.7004
+2;137;374;32.3897
+------end of frame-------
+1;423;327;85.7707
+2;137;370;22.9539
+------end of frame-------
+1;423;333;70.1973
+2;137;370;31.0537
+------end of frame-------
+1;423;333;70.4872
+2;137;370;21.4607
+------end of frame-------
+1;423;327;73.6164
+2;137;370;35.0373
+------end of frame-------
+1;423;327;68.087
+2;137;370;26.4074
+------end of frame-------
+1;423;327;64.2235
+2;140;376;22.2245
+------end of frame-------
+1;423;333;65.796
+2;137;374;26.3573
+------end of frame-------
+1;423;333;78.9017
+2;140;376;27.8125
+------end of frame-------
+1;423;333;72.8015
+2;137;374;15.2913
+------end of frame-------
+1;423;333;63.1613
+2;137;370;21.4982
+------end of frame-------
+1;423;333;57.4619
+2;137;370;32.276
+------end of frame-------
+1;423;333;73.5192
+2;137;374;31.4295
+------end of frame-------
+1;423;333;60.3203
+2;137;374;28.5755
+------end of frame-------
+1;423;333;69.6952
+2;137;370;24.2404
+------end of frame-------
+1;418;327;46.3621
+2;140;376;22.0878
+------end of frame-------
+1;423;333;63.5578
+2;137;370;19.1963
+------end of frame-------
+1;423;333;54.1073
+2;137;370;19.7063
+------end of frame-------
+1;423;333;67.4221
+2;137;370;21.8943
+------end of frame-------
+1;423;333;59.6982
+2;140;376;18.5834
+------end of frame-------
+1;423;333;73.2465
+2;137;370;24.3505
+------end of frame-------
+1;423;333;60.9103
+2;137;370;17.3811
+------end of frame-------
+1;423;333;71.4443
+2;140;376;25.288
+------end of frame-------
+1;423;333;74.5882
+2;140;376;20.7968
+------end of frame-------
+1;423;333;73.543
+2;137;374;18.6605
+------end of frame-------
+1;423;333;72.0746
+2;137;374;17.7738
+------end of frame-------
+1;423;333;53.7856
+2;137;374;31.4528
+------end of frame-------
+1;423;333;70.6113
+2;137;370;32.1176
+------end of frame-------
+1;423;327;57.6617
+2;137;370;24.5741
+------end of frame-------
+1;423;333;73.4728
+2;140;376;20.8779
+------end of frame-------
+1;418;327;59.282
+2;137;374;21.6415
+------end of frame-------
+1;423;333;65.0592
+2;137;374;28.0244
+------end of frame-------
+1;423;327;66.9266
+2;137;374;22.24
+------end of frame-------
+1;423;333;72.016
+2;137;374;21.8345
+------end of frame-------
+1;423;327;79.6178
+2;137;374;24.8962
+------end of frame-------
+1;423;333;62.7878
+2;136;380;23.8122
+------end of frame-------
+1;423;333;71.0358
+2;136;380;20.1601
+------end of frame-------
+1;418;333;81.3184
+2;137;374;18.8004
+------end of frame-------
+1;418;327;73.8188
+2;137;370;23.2862
+------end of frame-------
+1;418;327;70.3935
+2;136;380;20.8169
+------end of frame-------
+1;418;327;55.8488
+2;136;376;18.9736
+------end of frame-------
+1;418;327;71.8593
+2;136;380;17.9086
+------end of frame-------
+1;418;333;73.8578
+2;137;370;18.1066
+------end of frame-------
+1;423;333;75.5741
+2;137;374;21.5756
+------end of frame-------
+1;423;327;82.1325
+2;136;376;13.1349
+------end of frame-------
+1;423;333;75.8803
+2;137;370;23.8463
+------end of frame-------
+1;418;333;67.5441
+2;136;376;10.2497
+------end of frame-------
+1;423;333;76.1872
+2;136;380;14.9755
+------end of frame-------
+1;418;333;72.4711
+2;140;376;15.3289
+------end of frame-------
+1;423;333;70.0907
+2;136;372;19.1005
+------end of frame-------
+1;423;333;80.9612
+2;137;370;22.1239
+------end of frame-------
+1;418;327;67.3908
+------end of frame-------
+1;418;333;70.7394
+2;137;370;25.8705
+------end of frame-------
+1;418;327;73.6259
+2;137;370;21.4395
+------end of frame-------
+1;418;333;58.42
+2;136;372;20.9751
+------end of frame-------
+1;418;327;59.6873
+2;137;370;28.7143
+------end of frame-------
+1;418;333;70.4548
+2;137;370;14.7098
+------end of frame-------
+1;423;333;69.2504
+2;137;370;12.0905
+------end of frame-------
+1;423;327;60.892
+2;137;370;31.6232
+------end of frame-------
+1;423;333;81.8989
+2;137;370;34.6833
+------end of frame-------
+1;423;333;72.3837
+2;137;370;30.9359
+------end of frame-------
+1;423;333;72.7187
+2;137;370;24.411
+------end of frame-------
+1;418;338;67.4834
+2;137;370;38.0546
+------end of frame-------
+1;418;338;69.1898
+2;137;370;29.4273
+------end of frame-------
+1;418;333;60.988
+2;137;370;32.0116
+------end of frame-------
+1;418;327;66.9504
+2;137;370;25.9527
+------end of frame-------
+1;423;333;67.8488
+2;140;376;27.7119
+------end of frame-------
+1;423;333;66.2747
+2;137;370;29.4973
+------end of frame-------
+1;418;327;71.0235
+2;137;370;30.0588
+------end of frame-------
+1;418;333;71.0058
+2;140;376;17.209
+------end of frame-------
+1;418;327;63.7786
+2;140;376;14.7692
+------end of frame-------
+1;418;338;58.8251
+2;137;370;22.9906
+------end of frame-------
+1;418;333;66.8861
+2;137;370;40.3621
+------end of frame-------
+1;418;333;73.941
+2;137;370;32.7446
+------end of frame-------
+1;418;338;69.4522
+2;137;370;23.256
+------end of frame-------
+1;418;338;65.4194
+2;140;376;20.7689
+------end of frame-------
+1;423;333;61.5954
+2;137;370;23.0729
+------end of frame-------
+1;423;333;57.6473
+2;137;370;22.2521
+------end of frame-------
+1;418;338;70.1841
+2;140;376;28.1382
+------end of frame-------
+1;418;338;80.8608
+2;140;376;13.7428
+------end of frame-------
+1;418;333;74.2258
+2;137;370;19.6733
+------end of frame-------
+1;418;333;71.6742
+2;137;370;24.7351
+------end of frame-------
+1;418;333;69.6676
+2;140;376;15.112
+------end of frame-------
+1;423;333;78.5043
+2;137;374;10.4272
+------end of frame-------
+1;423;333;57.0882
+2;137;370;31.1926
+------end of frame-------
+1;423;338;64.9753
+2;137;370;17.8909
+------end of frame-------
+1;423;338;68.5642
+2;137;370;13.8337
+------end of frame-------
+1;423;338;68.6239
+2;137;370;22.6998
+------end of frame-------
+1;423;338;64.7845
+2;137;370;24.7831
+------end of frame-------
+1;423;338;58.7642
+2;137;370;10.265
+------end of frame-------
+1;423;333;57.1647
+2;137;370;28.1395
+------end of frame-------
+1;423;338;56.6534
+2;137;370;23.003
+------end of frame-------
+1;423;338;66.0195
+2;137;370;24.3741
+------end of frame-------
+1;423;338;64.4747
+2;137;370;23.2829
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;649;140;56.8566
+------end of frame-------
+0;641;132;65.2123
+------end of frame-------
+0;638;135;66.6875
+------end of frame-------
+0;636;132;70.3148
+------end of frame-------
+0;631;137;58.506
+------end of frame-------
+0;633;135;55.8773
+------end of frame-------
+0;633;135;70.1793
+------end of frame-------
+0;631;132;46.6913
+------end of frame-------
+0;631;137;56.3909
+------end of frame-------
+0;633;140;53.3974
+------end of frame-------
+0;633;135;53.2231
+------end of frame-------
+0;633;140;51.6622
+------end of frame-------
+0;633;140;61.2266
+------end of frame-------
+0;631;132;56.8624
+------end of frame-------
+0;631;132;49.0583
+------end of frame-------
+0;631;132;53.1678
+------end of frame-------
+0;633;140;59.8571
+------end of frame-------
+0;631;141;48.3515
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+3;284;108;21.7749
+4;850;103;37.5285
+------end of frame-------
+3;260;113;25.8841
+4;831;106;54.0404
+------end of frame-------
+3;242;106;16.5858
+4;808;101;40.4377
+------end of frame-------
+3;227;103;16.8185
+4;791;101;47.5889
+------end of frame-------
+3;208;106;22.4065
+4;774;101;19.6509
+------end of frame-------
+3;189;108;22.614
+4;751;101;32.8092
+------end of frame-------
+3;170;103;17.7506
+4;734;101;42.8699
+------end of frame-------
+3;156;108;31.6808
+4;717;103;27.0024
+------end of frame-------
+3;129;101;17.8544
+4;700;101;54.1988
+------end of frame-------
+3;112;101;15.8318
+4;678;106;42.2886
+------end of frame-------
+3;94;108;14.8086
+4;655;101;25.966
+------end of frame-------
+3;65;108;22.7737
+4;633;101;44.2621
+------end of frame-------
+4;608;108;34.5821
+------end of frame-------
+4;582;106;44.6716
+------end of frame-------
+4;559;112;43.1885
+------end of frame-------
+4;531;108;20.5752
+------end of frame-------
+4;508;112;59.3147
+------end of frame-------
+4;484;113;32.7925
+5;993;99;22.5242
+------end of frame-------
+4;463;118;16.6679
+5;972;101;25.9642
+------end of frame-------
+4;436;108;31.2667
+5;950;99;40.2691
+------end of frame-------
+4;417;113;15.1204
+5;931;99;42.4458
+------end of frame-------
+4;395;106;24.0398
+5;912;99;32.22
+------end of frame-------
+4;374;108;29.0354
+5;888;99;25.0874
+------end of frame-------
+4;350;118;34.1246
+5;869;99;34.1733
+------end of frame-------
+4;327;106;29.5266
+5;847;101;36.5475
+------end of frame-------
+4;310;112;20.7022
+5;831;99;28.7922
+------end of frame-------
+4;293;112;23.9172
+5;814;101;20.5764
+------end of frame-------
+4;270;112;24.4335
+5;791;95;25.3584
+------end of frame-------
+4;251;113;29.6126
+5;769;99;36.1051
+------end of frame-------
+4;237;112;35.3283
+5;755;94;38.4872
+------end of frame-------
+4;213;108;22.672
+5;734;95;21.895
+------end of frame-------
+4;197;112;30.1542
+5;717;99;34.769
+------end of frame-------
+4;179;108;44.5444
+5;700;95;33.9487
+------end of frame-------
+4;163;106;39.6082
+5;684;89;11.4691
+6;988;184;30.6642
+------end of frame-------
+4;146;103;34.2902
+5;665;94;16.6534
+6;972;186;15.2314
+------end of frame-------
+4;127;103;34.8633
+5;650;89;20.33
+6;955;180;26.3088
+------end of frame-------
+4;108;103;18.8107
+5;627;89;27.7823
+6;932;180;31.5586
+------end of frame-------
+4;89;99;31.3745
+5;616;89;32.4529
+6;915;174;17.3538
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;627;132;39.4747
+------end of frame-------
+0;627;140;33.5812
+------end of frame-------
+0;621;140;42.7141
+------end of frame-------
+0;627;140;39.916
+------end of frame-------
+0;627;140;45.5188
+------end of frame-------
+0;627;135;38.0006
+------end of frame-------
+0;627;137;43.5656
+------end of frame-------
+0;633;140;35.6945
+------end of frame-------
+0;627;140;33.436
+------end of frame-------
+0;627;140;42.6977
+------end of frame-------
+0;627;137;39.6782
+------end of frame-------
+0;627;141;41.4796
+------end of frame-------
+0;627;137;44.8495
+------end of frame-------
+0;627;140;45.34
+------end of frame-------
+0;627;140;51.9115
+------end of frame-------
+0;627;137;48.3957
+------end of frame-------
+0;627;137;41.4614
+------end of frame-------
+0;627;141;39.7528
+------end of frame-------
+0;627;140;40.3651
+------end of frame-------
+0;627;140;50.5793
+------end of frame-------
+0;627;137;53.2405
+------end of frame-------
+0;627;140;44.0046
+------end of frame-------
+0;627;132;32.1901
+------end of frame-------
+0;627;141;41.0687
+------end of frame-------
+0;627;141;49.0274
+------end of frame-------
+0;627;141;37.8509
+------end of frame-------
+0;627;141;44.6534
+------end of frame-------
+0;627;137;41.1293
+------end of frame-------
+0;621;140;37.1436
+------end of frame-------
+0;627;141;39.1273
+------end of frame-------
+0;627;140;48.0287
+------end of frame-------
+0;633;140;40.1222
+------end of frame-------
+0;627;141;39.0041
+------end of frame-------
+0;627;141;35.6675
+------end of frame-------
+0;627;141;41.4846
+------end of frame-------
+0;631;140;40.9594
+------end of frame-------
+0;627;140;47.1542
+------end of frame-------
+0;627;140;45.1647
+------end of frame-------
+0;627;137;41.6841
+------end of frame-------
+0;633;140;42.8354
+------end of frame-------
+0;627;140;45.9933
+------end of frame-------
+0;627;141;45.0785
+------end of frame-------
+0;627;141;44.3043
+------end of frame-------
+0;627;141;47.3605
+------end of frame-------
+0;622;141;67.0609
+------end of frame-------
+0;627;141;56.3494
+------end of frame-------
+0;627;140;35.9341
+------end of frame-------
+0;627;140;44.4867
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;633;129;13.1216
+------end of frame-------
+0;622;132;29.1359
+------end of frame-------
+0;633;129;23.7493
+------end of frame-------
+0;622;132;19.9738
+------end of frame-------
+0;622;127;15.9903
+------end of frame-------
+0;627;129;34.5872
+------end of frame-------
+0;621;129;15.9055
+------end of frame-------
+0;633;129;12.2368
+------end of frame-------
+0;627;127;20.9435
+------end of frame-------
+0;622;132;27.0207
+------end of frame-------
+0;627;129;28.1282
+------end of frame-------
+0;627;129;37.0451
+------end of frame-------
+0;627;127;36.1442
+------end of frame-------
+0;627;129;35.8589
+------end of frame-------
+0;627;127;44.6346
+------end of frame-------
+0;627;127;47.9241
+------end of frame-------
+0;627;129;55.445
+------end of frame-------
+0;627;132;43.1989
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;622;122;45.5421
+------end of frame-------
+0;617;127;50.3165
+------end of frame-------
+0;617;122;49.824
+------end of frame-------
+0;617;122;41.2315
+------end of frame-------
+0;617;127;58.0422
+------end of frame-------
+0;617;127;49.7806
+------end of frame-------
+0;617;127;54.3671
+------end of frame-------
+0;622;122;49.5014
+------end of frame-------
+0;627;129;66.312
+------end of frame-------
+0;627;127;53.3863
+------end of frame-------
+0;631;132;58.4331
+------end of frame-------
+0;636;132;53.4194
+------end of frame-------
+0;641;137;54.7298
+------end of frame-------
+0;644;135;45.4024
+------end of frame-------
+0;650;132;59.773
+------end of frame-------
+0;649;135;59.882
+------end of frame-------
+0;655;132;49.8106
+------end of frame-------
+0;655;137;48.5785
+------end of frame-------
+0;661;135;53.5113
+------end of frame-------
+0;661;135;47.376
+------end of frame-------
+0;661;135;58.3465
+------end of frame-------
+0;661;140;57.6039
+------end of frame-------
+0;665;141;46.7015
+------end of frame-------
+0;660;141;48.9502
+------end of frame-------
+0;660;141;42.4932
+------end of frame-------
+0;655;141;36.9126
+------end of frame-------
+0;650;141;46.8517
+------end of frame-------
+0;644;140;47.9467
+------end of frame-------
+0;636;141;39.7868
+------end of frame-------
+0;631;141;46.9698
+------end of frame-------
+0;627;146;34.6566
+------end of frame-------
+0;622;146;27.1293
+------end of frame-------
+0;617;151;41.5173
+------end of frame-------
+0;617;151;42.9674
+------end of frame-------
+0;612;151;31.115
+------end of frame-------
+0;617;151;16.6304
+------end of frame-------
+0;622;151;14.676
+------end of frame-------
+------end of frame-------
+0;622;146;33.8828
+------end of frame-------
+0;622;151;43.3443
+------end of frame-------
+0;627;152;46.1729
+------end of frame-------
+0;627;146;49.248
+------end of frame-------
+0;627;146;48.0312
+------end of frame-------
+0;622;146;45.866
+------end of frame-------
+0;622;146;54.5867
+------end of frame-------
+0;627;151;52.5068
+------end of frame-------
+0;627;151;43.064
+------end of frame-------
+0;627;146;46.8626
+------end of frame-------
+0;627;151;47.5149
+------end of frame-------
+0;627;146;50.9129
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;974;93;31.1455
+------end of frame-------
+0;972;101;35.8849
+------end of frame-------
+0;972;95;42.5621
+------end of frame-------
+0;972;95;36.0774
+------end of frame-------
+0;974;93;39.9556
+------end of frame-------
+0;978;95;47.3547
+------end of frame-------
+0;972;95;42.4028
+------end of frame-------
+0;972;95;35.3111
+------end of frame-------
+0;972;84;26.4408
+------end of frame-------
+0;969;84;36.8603
+------end of frame-------
+0;974;84;36.0111
+------end of frame-------
+0;974;84;41.0973
+------end of frame-------
+0;974;93;36.6026
+------end of frame-------
+0;972;89;51.4495
+------end of frame-------
+0;964;80;27.9495
+------end of frame-------
+0;945;94;32.7122
+2;333;174;12.0544
+------end of frame-------
+0;931;122;22.9026
+------end of frame-------
+0;920;152;26.6094
+------end of frame-------
+0;921;184;28.9023
+------end of frame-------
+0;932;214;36.9813
+------end of frame-------
+0;961;221;36.1875
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;812;141;30.6827
+------end of frame-------
+7;797;157;33.1904
+------end of frame-------
+7;774;174;39.5128
+------end of frame-------
+7;763;197;31.745
+------end of frame-------
+7;745;203;36.6808
+------end of frame-------
+7;746;220;42.0273
+------end of frame-------
+7;757;225;42.3249
+------end of frame-------
+7;768;225;37.815
+------end of frame-------
+7;780;225;40.6157
+------end of frame-------
+7;773;228;29.0268
+------end of frame-------
+7;751;231;17.3203
+------end of frame-------
+7;719;248;13.4713
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;440;216;15.0278
+------end of frame-------
+2;460;224;10.0525
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+8;241;108;12.3652
+------end of frame-------
+8;244;124;46.2668
+------end of frame-------
+8;240;136;56.4347
+------end of frame-------
+8;232;156;39.9042
+------end of frame-------
+8;232;176;25.4448
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;564;84;14.2454
+------end of frame-------
+9;568;68;31.7015
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+10;316;118;11.7883
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;652;308;11.5294
+------end of frame-------
+2;645;315;10.6669
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+11;624;224;28.8107
+------end of frame-------
+11;688;256;32.9974
+------end of frame-------
+11;704;256;32.0829
+------end of frame-------
+11;736;224;35.5949
+------end of frame-------
+11;752;208;38.5654
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+12;604;64;12.3468
+------end of frame-------
+12;596;56;14.8822
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;716;124;21.0437
+------end of frame-------
+2;736;120;28.0583
+------end of frame-------
+2;740;120;30.5533
+------end of frame-------
+2;748;128;44.084
+------end of frame-------
+2;764;124;12.5169
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;722;189;11.8666
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;572;216;14.1055
+------end of frame-------
+2;600;232;46.7072
+------end of frame-------
+2;620;236;40.0881
+------end of frame-------
+2;644;244;42.2577
+------end of frame-------
+2;660;240;17.9451
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;763;254;36.7442
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;907;265;33.2158
+------end of frame-------
+7;936;260;37.3106
+------end of frame-------
+7;955;251;26.7332
+------end of frame-------
+7;972;244;22.0818
+------end of frame-------
+7;974;237;29.4475
+------end of frame-------
+7;969;222;26.3998
+------end of frame-------
+7;960;208;23.5308
+------end of frame-------
+7;950;194;23.663
+------end of frame-------
+7;938;180;25.1491
+------end of frame-------
+7;931;175;22.5018
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;856;88;13.534
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;412;232;10.419
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;638;241;13.6835
+------end of frame-------
+9;631;241;20.0809
+------end of frame-------
+9;631;248;33.5739
+------end of frame-------
+9;631;248;21.1921
+------end of frame-------
+9;625;241;13.6618
+------end of frame-------
+9;604;241;49.2885
+------end of frame-------
+9;578;228;13.1396
+------end of frame-------
+9;564;234;17.7388
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+14;1008;208;25.5199
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;463;194;11.1877
+------end of frame-------
+------end of frame-------
+15;944;272;15.7796
+------end of frame-------
+------end of frame-------
+------end of frame-------
+15;928;240;16.5833
+------end of frame-------
+9;436;208;16.9202
+15;880;288;16.198
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;641;127;23.3027
+------end of frame-------
+9;646;170;18.24
+------end of frame-------
+9;656;184;10.7711
+------end of frame-------
+9;649;197;19.2058
+------end of frame-------
+9;631;194;14.4594
+------end of frame-------
+9;627;203;30.7681
+------end of frame-------
+9;627;198;10.806
+------end of frame-------
+9;627;184;21.1482
+------end of frame-------
+9;627;180;11.2931
+------end of frame-------
+9;622;175;40.9558
+------end of frame-------
+9;622;160;27.7829
+------end of frame-------
+9;621;157;22.6039
+------end of frame-------
+9;617;141;11.1018
+------end of frame-------
+9;616;146;27.4275
+------end of frame-------
+9;610;146;23.5011
+------end of frame-------
+9;610;146;29.6926
+------end of frame-------
+9;608;137;19.1485
+------end of frame-------
+9;610;140;19.8187
+------end of frame-------
+9;617;146;10.4585
+------end of frame-------
+9;640;128;17.9161
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;655;122;26.3502
+------end of frame-------
+9;646;118;38.1263
+------end of frame-------
+9;636;118;36.8121
+------end of frame-------
+9;631;122;54.2591
+------end of frame-------
+9;627;132;51.0012
+------end of frame-------
+9;627;132;53.7227
+------end of frame-------
+9;627;135;41.7664
+------end of frame-------
+9;627;132;52.8369
+------end of frame-------
+9;627;132;61.7927
+------end of frame-------
+9;627;127;47.6846
+------end of frame-------
+9;627;122;48.738
+------end of frame-------
+9;627;127;45.2747
+------end of frame-------
+9;622;127;58.5381
+------end of frame-------
+9;622;122;45.2436
+------end of frame-------
+9;627;127;57.5499
+------end of frame-------
+9;627;122;44.1602
+------end of frame-------
+9;622;127;47.7959
+------end of frame-------
+9;622;127;64.7685
+------end of frame-------
+9;627;122;52.2802
+------end of frame-------
+9;627;122;38.6509
+------end of frame-------
+9;631;122;42.271
+------end of frame-------
+9;631;122;54.6017
+------end of frame-------
+9;631;127;58.3499
+------end of frame-------
+9;636;127;58.755
+------end of frame-------
+9;636;132;43.1602
+------end of frame-------
+9;636;132;39.5006
+------end of frame-------
+9;641;132;62.757
+------end of frame-------
+9;641;132;65.2295
+------end of frame-------
+9;646;132;58.4541
+------end of frame-------
+9;646;132;38.6095
+------end of frame-------
+9;644;140;38.7639
+------end of frame-------
+9;650;151;45.7714
+------end of frame-------
+9;646;160;33.3506
+------end of frame-------
+9;646;165;33.0842
+------end of frame-------
+9;646;170;27.5067
+------end of frame-------
+9;646;175;30.2341
+------end of frame-------
+9;646;175;19.9805
+------end of frame-------
+9;646;175;22.0378
+------end of frame-------
+9;646;170;28.279
+------end of frame-------
+9;646;156;34.7062
+------end of frame-------
+9;646;146;50.7912
+------end of frame-------
+9;641;137;58.3219
+------end of frame-------
+9;631;132;45.4505
+------end of frame-------
+9;627;132;38.0065
+------end of frame-------
+9;622;132;23.0584
+------end of frame-------
+9;622;137;19.2972
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;593;141;12.3561
+------end of frame-------
+9;589;141;16.1388
+------end of frame-------
+9;589;146;12.571
+------end of frame-------
+9;584;146;21.7335
+------end of frame-------
+9;589;146;28.408
+------end of frame-------
+9;589;146;14.8845
+------end of frame-------
+9;589;146;18.0932
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;752;68;16.6196
+------end of frame-------
+7;752;56;16.3256
+------end of frame-------
+7;748;64;17.0522
+------end of frame-------
+7;744;88;18.9592
+------end of frame-------
+7;740;112;13.1139
+------end of frame-------
+7;731;113;18.5724
+------end of frame-------
+7;717;112;17.986
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;680;156;10.1726
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;800;204;13.2494
+------end of frame-------
+0;804;208;30.6843
+------end of frame-------
+0;808;212;34.5178
+------end of frame-------
+0;803;217;62.7604
+------end of frame-------
+0;788;213;58.8539
+------end of frame-------
+0;779;217;50.777
+------end of frame-------
+0;763;208;38.6783
+------end of frame-------
+0;739;201;32.8647
+14;1272;256;21.233
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;796;120;25.7687
+------end of frame-------
+0;820;96;25.2018
+------end of frame-------
+0;820;76;45.3871
+------end of frame-------
+0;800;72;49.6432
+------end of frame-------
+0;772;72;27.2883
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;640;136;16.208
+------end of frame-------
+7;652;132;14.5056
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;760;124;21.2429
+------end of frame-------
+7;736;140;14.787
+------end of frame-------
+7;720;156;11.7653
+------end of frame-------
+7;692;164;20.4552
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;616;148;16.6936
+------end of frame-------
+7;624;136;11.9565
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;624;64;15.5206
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;644;108;23.1562
+------end of frame-------
+7;648;112;29.1225
+------end of frame-------
+7;656;112;16.1794
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;736;136;10.3207
+------end of frame-------
+7;716;132;36.7765
+------end of frame-------
+------end of frame-------
+7;672;116;16.2707
+------end of frame-------
+7;648;108;19.287
+------end of frame-------
+7;628;112;19.1612
+------end of frame-------
+7;612;116;28.3505
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;600;124;33.435
+------end of frame-------
+7;588;124;30.0405
+------end of frame-------
+7;572;120;29.6282
+------end of frame-------
+7;560;112;14.9101
+------end of frame-------
+7;556;104;11.0275
+------end of frame-------
+7;560;96;11.6252
+------end of frame-------
+7;564;84;14.2391
+------end of frame-------
+7;568;84;22.9783
+------end of frame-------
+7;568;80;14.0435
+------end of frame-------
+7;572;84;19.7517
+------end of frame-------
+7;572;88;23.6428
+------end of frame-------
+7;580;104;37.1767
+------end of frame-------
+7;592;128;49.3368
+------end of frame-------
+7;596;144;27.3165
+------end of frame-------
+7;596;144;33.6384
+------end of frame-------
+7;588;144;42.0314
+------end of frame-------
+7;576;148;48.4813
+------end of frame-------
+7;556;152;24.2191
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;524;160;16.7971
+------end of frame-------
+7;536;152;25.767
+------end of frame-------
+7;560;140;28.9777
+------end of frame-------
+7;588;128;30.6947
+------end of frame-------
+7;616;120;34.5117
+------end of frame-------
+7;640;120;32.2405
+------end of frame-------
+7;656;120;39.0414
+------end of frame-------
+7;668;132;52.0926
+------end of frame-------
+7;664;140;51.8246
+------end of frame-------
+7;646;137;58.4132
+------end of frame-------
+7;620;132;49.1058
+------end of frame-------
+7;604;128;55.2016
+------end of frame-------
+7;604;148;39.0457
+------end of frame-------
+7;612;176;13.327
+------end of frame-------
+------end of frame-------
+7;632;208;13.0685
+------end of frame-------
+7;636;216;43.5618
+------end of frame-------
+7;641;213;42.1439
+------end of frame-------
+7;641;217;44.5967
+------end of frame-------
+7;646;208;51.5062
+------end of frame-------
+7;641;184;36.5051
+------end of frame-------
+7;632;164;53.1688
+------end of frame-------
+7;627;146;35.5042
+------end of frame-------
+7;622;141;12.4897
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+16;412;436;11.6353
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;444;184;13.6338
+------end of frame-------
+13;440;188;18.9664
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;436;204;19.7863
+------end of frame-------
+------end of frame-------
+13;444;200;13.5197
+------end of frame-------
+13;456;196;21.5212
+------end of frame-------
+13;472;172;21.3587
+------end of frame-------
+13;492;132;11.8374
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;592;216;18.8398
+------end of frame-------
+13;576;188;35.5003
+------end of frame-------
+13;568;172;34.8275
+------end of frame-------
+13;572;156;36.828
+------end of frame-------
+13;580;148;40.1887
+------end of frame-------
+13;584;148;41.9731
+------end of frame-------
+13;596;152;36.093
+------end of frame-------
+13;596;164;16.2757
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;568;112;50.8022
+------end of frame-------
+13;592;112;21.6705
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;902;151;10.006
+------end of frame-------
+13;904;152;11.4055
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;888;80;18.1869
+------end of frame-------
+13;880;68;11.7369
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;841;246;21.4289
+------end of frame-------
+13;874;237;13.8858
+------end of frame-------
+13;912;217;25.6473
+------end of frame-------
+13;932;220;15.3047
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;884;164;19.4436
+------end of frame-------
+13;864;174;18.2137
+------end of frame-------
+13;850;175;19.6973
+------end of frame-------
+13;828;176;26.5005
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;282;147;14.0462
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;299;84;15.6346
+------end of frame-------
+------end of frame-------
+9;346;80;21.1435
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;427;103;11.4433
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;428;220;12.6266
+------end of frame-------
+9;408;217;33.9536
+------end of frame-------
+9;404;216;26.2122
+------end of frame-------
+9;424;212;19.8604
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;492;124;13.8483
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;436;56;32.1604
+------end of frame-------
+9;432;68;28.9115
+------end of frame-------
+------end of frame-------
+9;436;108;21.6238
+------end of frame-------
+9;452;140;11.091
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;884;280;10.0504
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;456;140;14.4173
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+17;80;292;18.697
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;525;208;30.3229
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;551;187;11.254
+------end of frame-------
+------end of frame-------
+9;631;201;28.1402
+------end of frame-------
+9;678;194;10.1309
+------end of frame-------
+9;712;174;26.789
+------end of frame-------
+9;739;154;23.8874
+------end of frame-------
+9;752;147;13.3053
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;396;160;15.3968
+------end of frame-------
+------end of frame-------
+0;457;140;10.2389
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+9;552;204;37.0785
+------end of frame-------
+9;592;196;37.5818
+------end of frame-------
+9;616;188;52.6992
+------end of frame-------
+9;640;172;14.5549
+------end of frame-------
+7;652;168;54.5337
+------end of frame-------
+7;660;172;60.1301
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;672;208;30.1343
+------end of frame-------
+7;688;216;42.635
+------end of frame-------
+7;712;212;60.7171
+------end of frame-------
+7;744;212;34.037
+------end of frame-------
+------end of frame-------
+7;831;208;40.6363
+------end of frame-------
+7;880;212;39.2347
+------end of frame-------
+7;916;212;50.9859
+------end of frame-------
+7;924;204;48.3143
+------end of frame-------
+7;920;192;70.1908
+------end of frame-------
+7;908;188;40.2787
+------end of frame-------
+7;896;188;22.4472
+------end of frame-------
+------end of frame-------
+------end of frame-------
+7;912;184;21.9109
+------end of frame-------
+7;928;184;35.1603
+------end of frame-------
+7;928;176;26.183
+------end of frame-------
+7;920;160;35.7113
+------end of frame-------
+7;908;152;30.159
+------end of frame-------
+7;904;144;33.327
+------end of frame-------
+7;904;144;21.1821
+------end of frame-------
+7;904;144;18.0477
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;476;196;18.6565
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+18;624;56;10.1488
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;456;132;11.4658
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;360;80;10.2638
+------end of frame-------
+------end of frame-------
+2;352;84;17.7671
+------end of frame-------
+2;360;89;14.4562
+------end of frame-------
+2;384;108;20.5775
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+2;416;160;19.8048
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;608;220;14.1429
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;988;308;13.0712
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;988;256;19.4786
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;380;180;12.8676
+------end of frame-------
+------end of frame-------
+0;352;180;16.0527
+------end of frame-------
+0;344;184;14.8871
+------end of frame-------
+------end of frame-------
+0;336;176;27.9343
+------end of frame-------
+0;332;172;23.4469
+------end of frame-------
+------end of frame-------
+0;328;160;18.4334
+------end of frame-------
+0;328;152;12.0565
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;416;156;12.7759
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;424;128;20.5907
+------end of frame-------
+0;448;104;20.3384
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;488;80;16.65
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;589;61;26.0472
+------end of frame-------
+0;612;61;18.6252
+------end of frame-------
+0;650;80;13.5913
+------end of frame-------
+0;679;99;21.1126
+------end of frame-------
+0;717;112;18.9417
+------end of frame-------
+0;740;106;12.0459
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;696;152;14.6252
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+19;632;88;26.5293
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+19;644;236;10.6651
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+19;644;156;14.5371
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;632;200;44.6346
+20;672;92;11.801
+------end of frame-------
+13;632;196;35.8736
+------end of frame-------
+13;627;194;46.8661
+------end of frame-------
+13;616;212;46.7269
+------end of frame-------
+13;584;227;33.4377
+------end of frame-------
+13;556;256;13.1171
+------end of frame-------
+13;544;280;15.3469
+------end of frame-------
+13;560;298;63.4544
+------end of frame-------
+13;584;303;73.2967
+------end of frame-------
+13;608;308;68.4019
+------end of frame-------
+13;627;308;50.7256
+------end of frame-------
+13;622;294;37.5672
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;464;156;14.1174
+------end of frame-------
+13;464;160;14.8191
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;476;160;17.3789
+------end of frame-------
+13;480;156;24.7484
+------end of frame-------
+13;488;152;27.9535
+------end of frame-------
+13;492;152;21.8985
+------end of frame-------
+13;500;152;23.1284
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;536;148;13.639
+------end of frame-------
+13;548;148;29.7511
+------end of frame-------
+13;564;148;17.8926
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+13;912;184;15.1635
+------end of frame-------
+13;907;184;15.4474
+------end of frame-------
+13;904;188;18.738
+------end of frame-------
+13;898;184;24.7727
+------end of frame-------
+13;892;192;15.9517
+------end of frame-------
+13;888;184;12.8063
+------end of frame-------
+13;888;184;14.8247
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;616;152;21.6404
+------end of frame-------
+0;616;157;17.789
+------end of frame-------
+0;621;191;17.4119
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+21;540;372;40.0656
+------end of frame-------
+------end of frame-------
+21;524;300;43.4326
+------end of frame-------
+21;516;272;37.1412
+------end of frame-------
+21;508;248;40.58
+------end of frame-------
+21;496;236;60.432
+------end of frame-------
+21;480;236;50.1575
+------end of frame-------
+21;468;236;35.6628
+------end of frame-------
+21;456;232;34.3059
+------end of frame-------
+21;448;224;20.5648
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;624;176;35.9397
+------end of frame-------
+0;624;180;25.5239
+------end of frame-------
+0;624;188;30.4437
+------end of frame-------
+0;624;192;14.8133
+------end of frame-------
+0;624;196;27.7263
+------end of frame-------
+0;624;196;22.927
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+0;556;88;10.5091
+------end of frame-------
+------end of frame-------
+0;544;76;23.2971
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+------end of frame-------
+List of faces in video/dataset: 
+0;(41,107,214)
+1;(235,44,169)
+2;(3,33,187)
+3;(239,95,95)
+4;(76,252,16)
+5;(236,190,212)
+6;(237,81,6)
+7;(69,77,153)
+8;(37,142,81)
+9;(101,83,5)
+10;(92,51,236)
+11;(63,84,22)
+12;(167,34,205)
+13;(204,143,96)
+14;(212,243,78)
+15;(74,96,61)
+16;(203,238,47)
+17;(104,22,117)
+18;(147,109,53)
+19;(51,244,13)
+20;(76,230,5)
+21;(57,33,16)

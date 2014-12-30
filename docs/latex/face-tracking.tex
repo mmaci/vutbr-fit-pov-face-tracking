@@ -36,7 +36,7 @@
 
 % ----- dopiste titulky -----------------------------------------------------
 \newcommand\Course{Počítačové vidění}
-\newcommand\WorkTitle{Detekce objektů na GPU, jejich rozpoznávání a sledování}
+\newcommand\WorkTitle{Detekce objektů na CUDA, jejich rozpoznávání a sledování}
 \newcommand\AuthorA{Pavel Macenauer}
 \newcommand\AuthorB{Jan Bureš}
 \newcommand\AuthorAEmail{xmacen02@stud.fit.vutbr.cz}
@@ -104,7 +104,7 @@ unicode=true,
 
 \section{Cíl práce}
 
-Cílem této práce je naimplementovat detektor objektů na GPU a následně i rozšíření pro rozpoznání obličeje a jeho sledování. Vstupem jsou obrazová data (fotografie, video) a výstupem obrazová data a statistiky s vyznačenými detekcemi odpovídající sledovaným/detekovaným objektům.
+Cílem této práce je naimplementovat detektor objektů na GPU pomocí technologie NVidia CUDA a následně i rozšíření pro rozpoznání obličeje a jeho sledování. Vstupem jsou obrazová data (fotografie, video) a výstupem obrazová data a statistiky s vyznačenými detekcemi odpovídající sledovaným/detekovaným objektům.
 
 \section{Detekce objektů}
 
@@ -175,7 +175,7 @@ Každý pixel je počátkem vzorku daného velikostí, na kterou je natrénován
 Takovýchto detekcí je tradičně více na jednom místě a to pro jednotlivé zmenšeniny.
 
 \subsection{Uspořádání paměti}
-Podstatné součásti detektoru jsou rozděleny na následující části:
+Podstatné součásti detektoru jsou rozděleny na následující části. Typy paměti jsou dle názvosloví CUDA :
 
 \begin{itemize}
 \item \textbf{Stages} – constant memory \\
@@ -198,7 +198,7 @@ Jak bylo uvedeno výše, detektor zpravidla vrací více detekcí na jednom mís
 
 Celá oblast se poté převede do barevného modelu HSV (Huge, Saturation, Value), který lépe poslouží pro rozpoznávání podobností mezi obličeji. Samotné porovnání se provádí pomocí histogramu vytvořeného na základě obrázku v barevném modelu HSV, kde pro výpočet histogramu postačí pouze hodnoty H a S. Hodnotu V jsme se rozhodli vypustit z důvodu proměnlivých podmínek osvětlení obličeje, například při pohybu člověka od/ke zdroji osvětlení scény (lampa, okno, \dots). 
 
-K výpočtu rozdílnosti histogramu jsme využili metodu zvanou „Bhattacharyya distance“ viz. vzorec č. 1.
+K výpočtu rozdílnosti histogramu jsme využili metodu zvanou „Bhattacharyya distance“ viz. následující vzorec:
 
 \begin{figure}
 
@@ -212,9 +212,9 @@ d(H_{1},H_{2})=\sqrt{1-\frac{1}{\sqrt{\overline{H_{1}}\overline{H_{2}}N^2}}\sum\
 
 
 				
-Pomocí tohoto vzorce zjistíme rozdílnost histogramu v rozsahu hodnot <0;1> (0 - stejné histogramy, 1 - histogramy nemají nic společného). 
+Pomocí tohoto vzorce zjistíme rozdílnost histogramu v rozsahu hodnot $<0;1>$ (0 - stejné histogramy, 1 - histogramy nemají nic společného). 
 
-K porovnání dvou obličejů jsme využili víše uvedený postup při porovnání histogramu obličeje, ke kterému jsme ještě přidali vzdálenost oblasti, na které se obličej nacházel při posledním výskytu ve videu (popřípadě v sekvenci obrázků). Předpokládáme, že v sekvenci obrázku se daný obličej nebude přesouvat skokově, neboli vzdálenost od posledního výskytu bude u jednoho obličeje velmi malá. Problém by mohl nastat, pokud se obličej vytratí ze záběru a objeví se později v jiné jeho části (například odchod z místnosti a pozdější návrat jiným vchodem). Z toho důvodu jsme se rozhodli normalizovat vzdálenost do rozmezí <0;0,5) a přičíst k hodnotě rozdílnosti histogramu. Na základě součtu hodnocení se pak prochází uložené obličeje a vybere se nejlepší shoda. Pokud hodnocení nepřesáhne daný práh (nastaven na 0,6) prohlásí se obličej za shodný s dříve rozpoznaným. V opačném případě je obličej přidán do seznamu obličejů jako unikátní.
+K porovnání dvou obličejů jsme využili víše uvedený postup při porovnání histogramu obličeje, ke kterému jsme ještě přidali vzdálenost oblasti, na které se obličej nacházel při posledním výskytu ve videu (popřípadě v sekvenci obrázků). Předpokládáme, že v sekvenci obrázku se daný obličej nebude přesouvat skokově, neboli vzdálenost od posledního výskytu bude u jednoho obličeje velmi malá. Problém by mohl nastat, pokud se obličej vytratí ze záběru a objeví se později v jiné jeho části (například odchod z místnosti a pozdější návrat jiným vchodem). Z toho důvodu jsme se rozhodli normalizovat vzdálenost do rozmezí $<0;0,5>$ a přičíst k hodnotě rozdílnosti histogramu. Na základě součtu hodnocení se pak prochází uložené obličeje a vybere se nejlepší shoda. Pokud hodnocení nepřesáhne daný práh (nastaven na 0,6) prohlásí se obličej za shodný s dříve rozpoznaným. V opačném případě je obličej přidán do seznamu obličejů jako unikátní.
 
 \section{Rozdělení práce}
 \paragraph{Pavel Macenauer} detektor objektů na GPU (zároveň diplomová práce), rozpoznání objektů a kostra aplikace
@@ -227,9 +227,10 @@ K porovnání dvou obličejů jsme využili víše uvedený postup při porovná
 
 \begin{itemize}
 \item Závislost na knihovnách: OpenCV 2.4.* (testováno na 2.4.9, 2.4.10), CUDA 6.5 \\
-\item Přiložen projekt pro Microsoft Visual Studio (nestováno na Microsoft Visual Studio 2013).
-\item Nejaktuálnější verze je k nalezení na:\\  \url{https://github.com/mmaci/vutbr-fit-pov-face-tracking}
+
+\item Pro vlastní překlad je třeba stáhnout obsah repositáře, kde je přiložen projekt pro Microsoft Visual Studio 2013 a mít nainstalované výše zmíněné závislosti, popř. ve složce \verb|final\bin| je spustitelný balíček pro Windows:\\  \url{https://github.com/mmaci/vutbr-fit-pov-face-tracking}
 \end{itemize}
+
 
 \subsection{Spuštění}
 
