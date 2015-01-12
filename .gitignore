@@ -211,3 +211,6 @@ FakesAssemblies/
 *.synctex.gz
 *.vpp~*
 *-converted-to.pdf
+*.nav
+*.snm
+*.vrb
