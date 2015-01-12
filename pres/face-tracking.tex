@@ -176,8 +176,97 @@
 		\end{itemize}
 
 	\end{frame}
+%% --------------------------		
+
+	\begin{frame}[t,fragile]
+		\frametitle{Výstup z detektoru}	
 		
+		\begin{itemize}
+			\item Několik detekcí na jeden obličej
+		\end{itemize}			
+	    \centering\includegraphics[width=9cm]{img/detections.jpg}
+	\end{frame}		
+%% --------------------------		
+	\begin{frame}[t,fragile]
+		\frametitle{Předzpracování}	
 		
+		\begin{itemize}
+			\item Porovnání detekcí po dvojicích
+			\item Společná plocha > 50%
+			\item Vyberu tu s lepším hodnocením
+		\end{itemize}			
+	    \centering\includegraphics[width=9cm]{img/sepDet.jpg}
+	\end{frame}	
+%% --------------------------	
+	\begin{frame}[t,fragile]
+		\frametitle{Rozpoznání pomocí klíčových bodů}	
+		
+		\begin{itemize}
+			\item Většinou 0-3 body na jednu oblast.
+			\item Nelze použít.
+		\end{itemize}			
+	\end{frame}				
+%% --------------------------	
+	\begin{frame}[t,fragile]
+		\frametitle{Porovnání histogramu}	
+		
+		\begin{itemize}
+			\item Převod oblasti do HSV
+			\item Histogram ze složek H a S
+			\item Porovnání pomocí Bhattacharyya distance
+			\item Hodnota (vzdálenost) od 0 do 1 
+			\item Problém s nastavením prahu pro nový obličej (stejný obličej 0,1 až 0,35)
+		\end{itemize}		
+			
+\begin{align}
+d(H_{1},H_{2})=\sqrt{1-\frac{1}{\sqrt{\overline{H_{1}}\overline{H_{2}}N^2}}\sum\limits_{I}\sqrt{H_{1}(I) \cdot H_{2}(I)}}
+\end{align}
+
+\caption{Bhattacharyya distance}		
+%% --------------------------			
+	\end{frame}				
+	
+	\begin{frame}[t,fragile]
+		\frametitle{Vzdálenost od posledního výskytu}	
+		
+		\begin{itemize}
+			\item Normalizována do rozsahu <0;0,5)
+			\item Výsledné score tedy <0;1,5) práh 0,6
+		\end{itemize}
+		\centering\includegraphics[width=9cm]{img/Persons.jpg}
+		
+					
+	\end{frame}			
+	
+%% --------------------------			
+	\end{frame}				
+	
+	\begin{frame}[t,fragile]
+		\frametitle{Výstup programu}	
+		
+		\begin{itemize}
+			\item Textový soubor se seznamem unikátních obličejů a pozicí obličejů v každém snímku	
+			\item Unikátní obličeje v samostatném souboru
+		\end{itemize}
+		\centering\includegraphics[width=4cm]{img/faces.jpg}
+		
+					
+	\end{frame}			
+	
+%% --------------------------			
+	\end{frame}				
+	
+	\begin{frame}[t,fragile]
+		\frametitle{Možná vylepšení}	
+		Další metriky:
+		\begin{itemize}
+			\item Vzdálenost očí-nos-ústa	
+			\item Směr a rychlost pohybu
+		\end{itemize}		
+					
+	\end{frame}			
+	
+%% --------------------------	
 	\begin{frame}[t,fragile]
 
 		\vspace{30mm}
