@@ -185,7 +185,7 @@
 			\item Několik detekcí na jeden obličej
 		\end{itemize}			
 \begin{center}
-\includegraphics[width=8cm]{img/detections.jpg}
+\includegraphics[width=7cm]{img/detections.jpg}
 \end{center}
 	\end{frame}		
 %% --------------------------		
@@ -193,9 +193,8 @@
 		\frametitle{Předzpracování}	
 		
 		\begin{itemize}
-			\item Porovnání detekcí po dvojicích
-			\item Společná plocha \verb|> 50%|
-			\item Vyberu tu s lepším hodnocením
+			\item Sloučení na základě překrytí (min 50\%)
+			\item Výběr dle hodnocení detektoru
 		\end{itemize}			
 \begin{center}
 \includegraphics[width=7cm]{img/sepDet.jpg}
@@ -206,8 +205,8 @@
 		\frametitle{Rozpoznání pomocí klíčových bodů}	
 		
 		\begin{itemize}
-			\item Většinou 0-3 body na jednu oblast.
-			\item Nelze použít.
+			\item Většinou 0-3 body na jednu oblast
+			\item Nelze použít
 		\end{itemize}			
 	\end{frame}				
 %% --------------------------	
@@ -219,10 +218,11 @@
 			\item Histogram ze složek H a S
 			\item Porovnání pomocí Bhattacharyya distance
 			\item Hodnota (vzdálenost) od 0 do 1 
-			\item Problém s nastavením prahu pro nový obličej (stejný obličej 0,1 až 0,35)
+			\item Problém s nastavením prahu pro nový obličej\\
+			 (stejný obličej \verb|<0,0;0,5>| -- různý \verb|<0,4;0,8>|)
 		\end{itemize}		
 		
-		Bhattacharyya distance:	
+		Bhattacharyya distance: 
 \begin{align}
 d(H_{1},H_{2})=\sqrt{1-\frac{1}{\sqrt{\overline{H_{1}}\overline{H_{2}}N^2}}\sum\limits_{I}\sqrt{H_{1}(I) \cdot H_{2}(I)}}
 \end{align}
@@ -235,35 +235,32 @@ d(H_{1},H_{2})=\sqrt{1-\frac{1}{\sqrt{\overline{H_{1}}\overline{H_{2}}N^2}}\sum\
 		
 		\begin{itemize}
 			\item Normalizována do rozsahu \verb|<0;0,5)|
-			\item Výsledné score tedy \verb|<0;1,5)| práh \verb|0,6|
+			\item Výsledné hodnocení tedy \verb|<0;1,5)| práh \verb|0,6|
 		\end{itemize}
 		\centering\includegraphics[width=8cm]{img/Persons.jpg}
 		
 					
 	\end{frame}			
 	
-%% --------------------------					
-	
+%% --------------------------			
 	\begin{frame}[t,fragile]
 		\frametitle{Výstup programu}	
 		
 		\begin{itemize}
 			\item Textový soubor se seznamem unikátních obličejů a pozicí obličejů v každém snímku	
-			\item Unikátní obličeje v samostatném souboru
+			\item Unikátní obličeje v samostatných souborech
 		\end{itemize}
 		\centering\includegraphics[width=4cm]{img/faces.jpg}
-		
-					
-	\end{frame}			
+			
 	
 %% --------------------------			
-			
+	\end{frame}				
 	
 	\begin{frame}[t,fragile]
 		\frametitle{Možná vylepšení}	
 		Další metriky:
 		\begin{itemize}
-			\item Vzdálenost očí-nos-ústa	
+			\item Vzdálenost oči-nos-ústa
 			\item Směr a rychlost pohybu
 		\end{itemize}		
 					
